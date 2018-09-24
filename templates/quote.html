@@ -1,0 +1,130 @@
+<!--<!DOCTYPE html>
+<html>
+    <head>
+
+        <link rel="shortcut icon" href="https://www.online-convert.com/downloadFile/233538df-f8fb-4003-b3a1-27ea2c6c9ff1/fb705144-29d3-4d79-b676-2a9662ba8d72">
+        <meta charset="utf8">
+        <title>Stock Quote</title>
+    </head>
+    <body>
+
+        <h1>Stock Quote</h1>
+        <img src="https://data.whicdn.com/images/307107350/large.jpg" alt="kermit" width=350 height=350>
+        <form action="/quote" method="post">
+            <input name="ticker_symbol" placeholder="Symbol">
+            <input type="submit">
+            <a href="/menu">Main Menu</a>
+        </form>
+        <h2>Last Sale</h2>
+            {{result}}
+    </body>-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="apple-touch-icon" sizes="57x57" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/favicon-16x16.png">
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Web Trader Dashboard">
+        <meta name="author" content="Paulina Khew">
+        <title>Stock Quote</title>
+        <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="https://getbootstrap.com/docs/4.1/examples/dashboard/dashboard.css" rel="stylesheet">
+    </head>
+    <body>
+        <form action="/dashboard" Method="post">
+        </form>
+    
+        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="">Web Trader | Stock Quote</a>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="/login">Sign out</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                                <li class="nav-item">
+                                        <a class="nav-link" href="/menu">
+                                            <span data-feather="home"></span>
+                                            Main Menu
+                                        </a>
+                                    </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dashboard">
+                                    <span data-feather="file-text"></span>
+                                    Dashboard 
+                                </a>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="/buy">
+                                        <span data-feather="shopping-cart"></span>
+                                        Buy Menu
+                                    </a>
+                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/sell">
+                                    <span data-feather="shopping-cart"></span>
+                                    Sell Menu 
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/lookup">
+                                    <span data-feather="bar-chart"></span>
+                                    Symbol Lookup
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="/quote">
+                                    <span data-feather="bar-chart-2"></span>
+                                    Stock Quote <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">
+                                    <span data-feather="users"></span>
+                                    Exit
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Stock Quote</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                        </div>
+                    </div>
+                    <img src="https://data.whicdn.com/images/307107350/large.jpg" alt="kermit" width=500 height=350>
+                    <form action="/quote" method="post">
+                        <input name="ticker_symbol" placeholder="Symbol">
+                        <input type="submit">
+                    </form>
+                    <h2>{{result}}</h2>
+                        
+                </main>
+            </div>
+            <!-- Icons -->
+            <script src="https://unpkg.com/feather-icons@4.7.3/dist/feather.min.js"></script>
+            <script>
+                feather.replace()
+            </script>
+        </div>
+    </body>
+</html>

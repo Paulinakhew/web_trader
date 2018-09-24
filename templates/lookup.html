@@ -1,0 +1,180 @@
+<!--<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" href="https://www.online-convert.com/downloadFile/233538df-f8fb-4003-b3a1-27ea2c6c9ff1/fb705144-29d3-4d79-b676-2a9662ba8d72">
+        <meta charset="utf8">
+        <title>Symbol Lookup</title>
+    </head>
+    <body>
+        <h1>Symbol Lookup</h1>
+        <img src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.15752-9/37047423_1718940421547129_2307209861080809472_n.jpg?_nc_cat=0&oh=34485c0235e96317e374e57ee4b4c842&oe=5C3A253C" alt="kermit" width=350 height=350>
+        <form action="/lookup" Method="post">
+            <input name="company_name" placeholder="company">            
+            <input type="submit">
+
+        <a href="/menu">Main Menu</a>
+
+        </form>
+        <h2>Symbol</h2>
+            {{result}}
+    </body>-->
+
+    <!--<!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="https://www.online-convert.com/downloadFile/233538df-f8fb-4003-b3a1-27ea2c6c9ff1/fb705144-29d3-4d79-b676-2a9662ba8d72">
+    
+        <title>Buy Menu</title>
+    
+        
+        <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+        
+        <link href="https://getbootstrap.com/docs/4.1/examples/sticky-footer/sticky-footer.css" rel="stylesheet">
+    </head>
+    
+    <body>
+    
+        
+        <main role="main" class="container">
+        <h1 class="mt-5">Buy Menu</h1>
+        <p class="lead">Input the ticker symbol and the number of shares of the stock you would like to purchase. </p>
+        <p>Contact <a href="/contact">Paulina Khew</a> here.</p>
+        <img src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.15752-9/37047423_1718940421547129_2307209861080809472_n.jpg?_nc_cat=0&oh=34485c0235e96317e374e57ee4b4c842&oe=5C3A253C" alt="kermit" width=350 height=350>    
+        <form action="/buy" method="post">
+            <input name="ticker_symbol" placeholder="symbol">
+            <input name="number_of_shares" placeholder="no. of shares">
+            <input type="submit">
+        </form>    
+        <h2>{{result}}</h2>
+    </main>
+    
+        <footer class="footer">
+        <div class="container">
+            <span class="text-muted">
+                    <a href="/menu">Main Menu</a>
+                    <a href="/dashboard">Dashboard</a> 
+                    <a href="/buy">Buy Menu</a>
+                    <a href="/sell">Sell Menu</a>
+                    <a href="/lookup">Symbol Lookup</a>
+                    <a href="/quote">Stock Quote</a>
+                    <a href="/login">Exit</a>
+            </span>
+        </div>
+        </footer>
+    </body>
+    </html>-->
+    
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <link rel="apple-touch-icon" sizes="57x57" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-57x57.png">
+            <link rel="apple-touch-icon" sizes="60x60" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-60x60.png">
+            <link rel="apple-touch-icon" sizes="72x72" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-72x72.png">
+            <link rel="apple-touch-icon" sizes="76x76" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-76x76.png">
+            <link rel="apple-touch-icon" sizes="114x114" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-114x114.png">
+            <link rel="apple-touch-icon" sizes="120x120" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-120x120.png">
+            <link rel="apple-touch-icon" sizes="144x144" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-144x144.png">
+            <link rel="apple-touch-icon" sizes="152x152" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-152x152.png">
+            <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/apple-icon-180x180.png">
+            <link rel="icon" type="image/png" sizes="192x192"  href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/android-icon-192x192.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="96x96" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/favicon-96x96.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="https://raw.githubusercontent.com/Paulinakhew/my_website/master/static/favicon-16x16.png">
+            <meta charset="utf8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <meta name="description" content="Web Trader Dashboard">
+            <meta name="author" content="Paulina Khew">
+            <title>Symbol Lookup</title>
+            <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+            <!-- Custom styles for this template -->
+            <link href="https://getbootstrap.com/docs/4.1/examples/dashboard/dashboard.css" rel="stylesheet">
+        </head>
+        <body>
+            <form action="/dashboard" Method="post">
+            </form>
+        
+            <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Web Trader | Symbol Lookup</a>
+                <ul class="navbar-nav px-3">
+                    <li class="nav-item text-nowrap">
+                        <a class="nav-link" href="/login">Sign out</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="container-fluid">
+                <div class="row">
+                    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                        <div class="sidebar-sticky">
+                            <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                            <a class="nav-link" href="/menu">
+                                                <span data-feather="home"></span>
+                                                Main Menu
+                                            </a>
+                                        </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/dashboard">
+                                        <span data-feather="file-text"></span>
+                                        Dashboard 
+                                    </a>
+                                <li class="nav-item">
+                                        <a class="nav-link" href="/buy">
+                                            <span data-feather="shopping-cart"></span>
+                                            Buy Menu
+                                        </a>
+                                    </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/sell">
+                                        <span data-feather="shopping-cart"></span>
+                                        Sell Menu 
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/lookup">
+                                        <span data-feather="bar-chart"></span>
+                                        Symbol Lookup <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/quote">
+                                        <span data-feather="bar-chart-2"></span>
+                                        Stock Quote
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/login">
+                                        <span data-feather="users"></span>
+                                        Exit
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Symbol Lookup</h1>
+                            <div class="btn-toolbar mb-2 mb-md-0">
+                            </div>
+                        </div>
+                        <img src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.15752-9/37047423_1718940421547129_2307209861080809472_n.jpg?_nc_cat=0&oh=34485c0235e96317e374e57ee4b4c842&oe=5C3A253C" alt="kermit" width=500 height=350>
+                        <form action="/lookup" Method="post">
+                            <input name="company_name" placeholder="company">            
+                            <input type="submit">
+                        </form>
+                        <h2>{{result}}</h2>
+                            
+                    </main>
+                </div>
+                <!-- Icons -->
+                <script src="https://unpkg.com/feather-icons@4.7.3/dist/feather.min.js"></script>
+                <script>
+                    feather.replace()
+                </script>
+            </div>
+        </body>
+    </html>
