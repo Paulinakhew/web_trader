@@ -37,7 +37,18 @@
             <img class="mb-4" src="http://www.iwave.com.ph/wp-content/uploads/2015/08/arrow.png" alt="" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             <input name="username" placeholder="username" required>
-            <input name="password" placeholder="password" required>
+            <input name="password" placeholder="password" type="password" required id="myInput">
+                </br>
+            <input type="checkbox" onclick="myFunction()">Show Password
+            <script>
+            function myFunction() {
+                var x = document.getElementById("myInput");
+                if (x.type === "password") {
+                  x.type = "text";
+                } else {
+                  x.type = "password";
+                }
+              }</script>
                 <!--<label>
                     <input type="checkbox" value="remember-me"> Remember me
                 </label>-->
