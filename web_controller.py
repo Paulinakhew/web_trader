@@ -119,7 +119,6 @@ def sell():
         else:
             return render_template('sell.html')
 
-
 @app.route('/leaderboard',methods=['GET','POST'])
 def leaderboard():
     if request.method=="GET":
