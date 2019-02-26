@@ -24,7 +24,6 @@ def login():
             else:
                 return redirect('/menu')
         else:
-#            print('please try again')
             return redirect('/login')
 
 
