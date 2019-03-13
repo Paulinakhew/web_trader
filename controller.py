@@ -10,12 +10,6 @@ app = Flask(__name__)
 username = ''
 
 @app.route('/',methods=['GET'])
-def redirect_to_login():
-    if request.method=="GET":
-        return redirect('/login')
-    else:
-        return redirect('/login')
-
 @app.route('/login',methods=['GET','POST'])
 def login():
     if request.method=="GET":
