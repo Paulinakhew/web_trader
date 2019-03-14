@@ -4,3 +4,12 @@ This app runs using Flask. After downloading all files, type `python3 controller
 
 ![Login menu](static/login.png?raw=true "Login menu")
 This is the login menu where you can login or create a new user account. 
+
+![Login menu](static/main_menu.png?raw=true "Main menu")
+This is the main menu that opens after you log in. 
+
+![Dashboard](static/dashboard.png?raw=true "Dashboard")
+The dashboard is where you can see all of your previous transactions as well as current holdings.
+
+![Buy and Sell Menu](static/buy_sell.png?raw=true "Buy and Sell Menu")
+The buy and sell menu lets the user input the ticker symbol and quantity of the stock that they want to purchase/sell.
