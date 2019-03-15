@@ -49,7 +49,7 @@ def create():
         submitted_username = request.form['username']
         submitted_password = request.form['password']
         submitted_funds = request.form['funds']
-        result = m.create_(submitted_username,submitted_password,submitted_funds)
+        m.create_(submitted_username,submitted_password,submitted_funds)
         return redirect('/login')
 
 @app.route('/lookup',methods=['GET','POST'])
@@ -132,7 +132,7 @@ def dashboard():
         user_transactions = m.display_user_transactions()
         return render_template('dashboard.html',position_list=user_holdings, result=user_transactions)
     else:
-        return render_template('dashboard.html',result=result)
+        return render_template('dashboard.html',result=None)
 
 
 @app.route('/contact', methods=['GET','POST'])

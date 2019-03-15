@@ -20,10 +20,8 @@ def log_in(user_name,password):
     cursor.execute(query)
     result_tuple = cursor.fetchone()
     if result_tuple[0] == 0:
-#        print('false')
         return False
     elif result_tuple[0] == 1:
-#        print('true')
         cursor.execute("""
             UPDATE current_user SET username = '{}' WHERE pk = 1;""".format(user_name))
         connection.commit()
@@ -82,13 +80,8 @@ def sell(username, ticker_symbol, trade_volume):
     last_price = float(quote_last_price(ticker_symbol))
     brokerage_fee = 6.95 #TODO un-hardcode this value
     current_balance = get_user_balance(username) #TODO un-hardcode this value
-    print("Price", last_price)
-    print("brokerage fee", brokerage_fee)
-    print("current balance", current_balance)
     transaction_revenue = (trade_volume * last_price) - brokerage_fee
-    print("Total revenue of Transaction:", transaction_revenue)
     agg_balance = float(current_balance) + float(transaction_revenue)
-    print("\nExpected user balance after transaction:", agg_balance)
     return_list = (last_price, brokerage_fee, current_balance, trade_volume,agg_balance,username,ticker_symbol,current_number_shares)
 
     if current_number_shares >= trade_volume:
@@ -156,18 +149,10 @@ def buy(username, ticker_symbol, trade_volume):
     last_price = float(quote_last_price(ticker_symbol))
     brokerage_fee = 6.95 #TODO un-hardcode this value
     username = current_user()
-#    print(username)
     current_balance = get_user_balance(username)
     #TODO un-hardcode this value
-    print("last price", last_price)
-    print("brokerage fee", brokerage_fee)
-    print("current balance", current_balance)
     transaction_cost = (trade_volume * last_price) + brokerage_fee
-    print("transaction", transaction_cost)
-    print("current bal", current_balance)
-    print("Total cost of Transaction:", transaction_cost)
     left_over = float(current_balance) - float(transaction_cost)
-    print("\nExpected user balance after transaction:", left_over)
     return_list = (last_price, brokerage_fee, current_balance, trade_volume,left_over,username,ticker_symbol)
     if transaction_cost <= current_balance:
         return True, return_list #success
@@ -291,10 +276,8 @@ def calculate_p_and_l():
         stock_transactions = 'SELECT * FROM transactions WHERE owner_username = "{}" and ticker_symbol = "{}"'.format(username, symbol)
         cursor.execute(stock_transactions)
         transactions = cursor.fetchall()
-#        print(username,symbol)
         total_shares = 0
         price = 0
-#        print(f' transactions{transactions}')
 # do this instead
 # SELECT sum(num_shares*last_price) from transactions where owner_username = 'John' AND ticker_symbol = 'x';
         for transaction in transactions:
@@ -415,10 +398,6 @@ def log_out():
 
 
 if __name__ == '__main__':
-    # print(lookup_ticker_symbol("tesla"))
-    # print(find_quote("tesla"))
-    # print(lookup_ticker_symbol('asdfajHLSKDJHFA')) #FIXME This is the code that isn't passing
-#    print(calculate_p_and_l('John'))
 #    leaderboard()
 #    update_leaderboard()
     pass
