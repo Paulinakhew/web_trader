@@ -1,31 +1,9 @@
-<!--<!DOCTYPE html>
-<html>
-    <head>-->
-        <!-- this isn't displayed on the webpage -->
-        <!--<link rel="shortcut icon" href="https://www.online-convert.com/downloadFile/233538df-f8fb-4003-b3a1-27ea2c6c9ff1/fb705144-29d3-4d79-b676-2a9662ba8d72">
-        <meta charset="utf8">
-        <title>Menu</title>
-    </head>
-    <body>-->
-        <!-- this is displayed on the webpage -->
-        <!--<h1>Terminal Trader Menu</h1>
-        <img src="https://data.whicdn.com/images/302162009/large.jpg" alt="kermit" width=350 height=350>
-        <form action="/menu" methon="post">
-            <a href="/buy">Buy Menu</a>
-            <a href="/sell">Sell Menu</a>
-            <a href="/lookup">Symbol Lookup</a>
-            <a href="/quote">Stock Quote</a>
-            <a href="/dashboard">User Dashboard</a>
-            <a href="/login">Logout</a>
-        </form>
-    <body/>-->
-
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
+        <meta name="description" content="This is the main menu page for Paulina Khew's Web Trader Flask application. ">
         <meta name="author" content="Paulina Khew">
         <link rel="apple-touch-icon" sizes="57x57" href="static/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="static/apple-icon-60x60.png">
@@ -49,54 +27,43 @@
 
     <body class="text-center">
 
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-        <header class="masthead mb-auto">
-        <div class="inner">
-            <h3 class="masthead-brand"><a href="https://www.linkedin.com/in/paulinakhew/" target="_blank">Paulina Khew's</a> Web Trader</h3>
-            <nav class="nav nav-masthead justify-content-center">
-            <a class="nav-link active" href="">Menu</a>
-            <a class="nav-link" href="/dashboard">Dashboard</a>
-            <a class="nav-link" href="/bs">Buy and Sell Menu</a>
-            <a class="nav-link" href="/lq">Lookup and Quote</a>
-            <a class="nav-link" href="/login">Exit</a>
-            </nav>
+        <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+            <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand"><a href="https://www.linkedin.com/in/paulinakhew/" target="_blank">Paulina Khew's</a> Web Trader</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link active" href="">Menu</a>
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+                <a class="nav-link" href="/bs">Buy and Sell Menu</a>
+                <a class="nav-link" href="/lq">Lookup and Quote</a>
+                <a class="nav-link" href="/login">Exit</a>
+                </nav>
+            </div>
+            </header>
+
+            <main role="main" class="inner cover">
+                <img src="static/trading.jpg" alt="Stock Trading photo" width=500 height=350>
+                <h1 class="cover-heading">Web Trader Menu</h1>
+                <p class="lead">Welcome to web trader! You can look up ticker symbols, search for the last price of any stock on Nasdaq, and buy and sell with your own funds. </p>
+                <p class="lead">
+                    <a href="/contact" class="btn btn-lg btn-secondary">Contact Paulina Khew</a>
+                </p>
+            </main>
+
+            <footer class="mastfoot mt-auto">
+            <div class="inner">
+                <p>This trading website is created by <a href="https://github.com/Paulinakhew" target="_blank">@Paulinakhew</a>.</p>
+            </div>
+            </footer>
         </div>
-        </header>
-
-        <main role="main" class="inner cover">
-        <!--<img src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.15752-9/37190711_1718940894880415_378032799371755520_n.jpg?_nc_cat=0&oh=f568da655acefb662ad1581b01cddb15&oe=5BFD06D0" alt="kermit" width=350 height=350>-->
-        <img src="static/trading.jpg" alt="Stock Trading photo" width=500 height=350>
-        <h1 class="cover-heading">Web Trader Menu</h1>
-        <p class="lead">Welcome to web trader! You can look up ticker symbols, search for the last price of any stock on Nasdaq, and buy and sell with your own funds. </p>
-        <p class="lead">
-            <a href="/contact" class="btn btn-lg btn-secondary">Contact Paulina Khew</a>
-        </p>
-        </main>
-
-        <footer class="mastfoot mt-auto">
-        <div class="inner">
-            <p>This trading website is created by <a href="https://github.com/Paulinakhew" target="_blank">@Paulinakhew</a>.</p>
-        </div>
-        </footer>
-    </div>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
-    <script src="https://getbootstrap.com/docs/4.1/dist/js/bootstrap.min.js"></script>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+        <script src="../../assets/js/vendor/popper.min.js"></script>
+        <script src="../../dist/js/bootstrap.min.js"></script>
     </body>
 </html>
-
-
-
-
-
-<!-- <h3>Hi, <span style="color:#00FF00"> {{name}} </span></h3> -->
-<!-- this is how you comment stuff out -->
-
-
-
