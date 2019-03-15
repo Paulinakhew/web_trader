@@ -9,6 +9,7 @@ username = ''
 @app.route('/',methods=['GET'])
 @app.route('/login',methods=['GET','POST'])
 def login():
+    cannot_login = None
     if request.method=="GET":
         return render_template('login.html')
     else:
@@ -22,7 +23,8 @@ def login():
             else:
                 return redirect('/menu')
         else:
-            return redirect('/login')
+            cannot_login = True
+            return render_template('login.html', cannot_login=cannot_login)
 
 
 @app.route('/menu',methods=['GET','POST'])

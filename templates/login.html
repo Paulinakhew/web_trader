@@ -33,7 +33,11 @@
                     {background: linear-gradient(#fff 0%, #b6e6ee 25%,#9ae1ec 50%, #7dc7f1 90%);}
                     </style>
             <!--TODO: I need to make the remember me check box work-->
-            <!--<img src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.15752-9/39822907_2602539103105268_8456832314251411456_n.jpg?_nc_cat=0&oh=c36043f55849998dc94d98dbfaa422a4&oe=5BECF047" alt="kermit" width=350 height=350>-->
+            {% if cannot_login %}
+            <div class="alert alert-primary" role="alert">
+                Your username and password are invalid. Try creating a new account. 
+            </div>
+            {% endif %}
             <img class="mb-4" src="static/arrow.png" alt="Arrow that looks like a line graph" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
             <div>
