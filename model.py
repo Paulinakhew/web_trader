@@ -50,7 +50,7 @@ def create_(new_user,new_password,new_fund):
     connection.close()
 
 def update_holdings():
-    #username = current_user()
+    username = current_user()
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
     query = 'DELETE FROM holdings WHERE num_shares = 0.0'

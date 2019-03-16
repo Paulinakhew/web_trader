@@ -128,6 +128,7 @@ def leaderboard():
 @app.route('/dashboard',methods=['GET','POST'])
 def dashboard():
     if request.method=="GET":
+        m.update_holdings()
         #pnl = m.calculate_p_and_l(username)
         user_holdings = m.display_user_holdings()
         #holdings = pd.DataFrame(user_holdings)
