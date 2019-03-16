@@ -7,7 +7,6 @@ app = Flask(__name__)
 username = ''
 
 @app.route('/',methods=['GET'])
-@app.route('/login',methods=['GET','POST'])
 def login():
     cannot_login = None
     if request.method=="GET":
@@ -29,16 +28,24 @@ def login():
 
 @app.route('/menu',methods=['GET','POST'])
 def mainmenu():
+    current_user = m.current_user()
     if request.method=="GET":
-        return render_template('menu.html')
+        if current_user == 'randomuser':
+            return redirect('/')
+        else:
+            return render_template('menu.html')
     else:
         return render_template('menu.html')
 
 
 @app.route('/adminmenu',methods=['GET','POST'])
 def adminmenu():
+    current_user = m.current_user()
     if request.method=="GET":
-        return render_template('adminmenu.html')
+        if current_user != 'admin':
+            return redirect('/')
+        else:
+            return render_template('adminmenu.html')
     else:
         return render_template('adminmenu.html')
 
@@ -52,12 +59,16 @@ def create():
         submitted_password = request.form['password']
         submitted_funds = request.form['funds']
         m.create_(submitted_username,submitted_password,submitted_funds)
-        return redirect('/login')
+        return redirect('/')
 
 @app.route('/lookup',methods=['GET','POST'])
 def look_up():
+    current_user = m.current_user()
     if request.method=="GET":
-        return render_template('lookup.html')
+        if current_user == 'randomuser':
+            return redirect('/')
+        else:
+            return render_template('lookup.html')
     else:
         submitted_company_name=request.form['company_name']
         ticker_symb = m.lookup_ticker_symbol(submitted_company_name)
@@ -67,8 +78,12 @@ def look_up():
 
 @app.route('/quote',methods=['GET','POST'])
 def quote():
+    current_user = m.current_user()
     if request.method=="GET":
-        return render_template('quote.html')
+        if current_user == 'randomuser':
+            return redirect('/')
+        else:
+            return render_template('quote.html')
     else:
         submitted_symbol=request.form['ticker_symbol']
         price = m.quote_last_price(submitted_symbol)
@@ -85,9 +100,12 @@ def quote():
 
 @app.route('/buy',methods=['GET','POST'])
 def buy():
-#    username = m.current_user()
+    current_user = m.current_user()
     if request.method=="GET":
-        return render_template('buy.html')
+        if current_user == 'randomuser':
+            return redirect('/')
+        else:
+            return render_template('buy.html')
     else:
         submitted_symbol=request.form['ticker_symbol']
         submitted_volume=request.form['number_of_shares']
@@ -103,8 +121,12 @@ def buy():
 
 @app.route('/sell',methods=['GET','POST'])
 def sell():
+    current_user = m.current_user()
     if request.method=="GET":
-        return render_template('sell.html')
+        if current_user == 'randomuser':
+            return redirect('/')
+        else:
+            return render_template('sell.html')
     else:
         submitted_symbol=request.form['ticker_symbol']
         submitted_volume=request.form['number_of_shares']
@@ -120,35 +142,51 @@ def sell():
 
 @app.route('/leaderboard',methods=['GET','POST'])
 def leaderboard():
+    current_user = m.current_user()
     if request.method=="GET":
-        return render_template('leaderboard.html')
+        if current_user == 'randomuser':
+            return redirect('/')
+        else:
+            return render_template('leaderboard.html')
     else:
         return render_template('leaderboard.html')
 
 @app.route('/dashboard',methods=['GET','POST'])
 def dashboard():
+    current_user = m.current_user()
     if request.method=="GET":
-        m.update_holdings()
-        #pnl = m.calculate_p_and_l(username)
-        user_holdings = m.display_user_holdings()
-        #holdings = pd.DataFrame(user_holdings)
-        user_transactions = m.display_user_transactions()
-        return render_template('dashboard.html',position_list=user_holdings, result=user_transactions)
+        if current_user == 'randomuser':
+            return redirect('/')
+        else:
+            m.update_holdings()
+            #pnl = m.calculate_p_and_l(username)
+            user_holdings = m.display_user_holdings()
+            #holdings = pd.DataFrame(user_holdings)
+            user_transactions = m.display_user_transactions()
+            return render_template('dashboard.html',position_list=user_holdings, result=user_transactions)
     else:
         return render_template('dashboard.html',result=None)
 
 
 @app.route('/contact', methods=['GET','POST'])
 def contact():
+    current_user = m.current_user()
     if request.method=="GET":
-        return render_template('contact.html')
+        if current_user == 'randomuser':
+            return redirect('/')
+        else:
+            return render_template('contact.html')
     else:
         return render_template('contact.html')
 
 @app.route('/bs', methods=['GET','POST'])
 def buyandsell():
+    current_user = m.current_user()
     if request.method=="GET":
-        return render_template('bs.html')
+        if current_user == 'randomuser':
+            return redirect('/')
+        else:
+            return render_template('bs.html')
     elif request.method=="POST":
         try:
             submitted_symbol=request.form['ticker_symbol']
@@ -178,8 +216,12 @@ def buyandsell():
 
 @app.route('/lq', methods=['GET','POST'])
 def lookupquote():
+    current_user = m.current_user()
     if request.method=="GET":
-        return render_template('lq.html')
+        if current_user == 'randomuser':
+            return redirect('/')
+        else:
+            return render_template('lq.html')
     elif request.method=="POST":
         try:
             submitted_company_name=request.form['company_name']
