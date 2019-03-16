@@ -85,53 +85,61 @@
                         <div class="btn-toolbar mb-2 mb-md-0"></div>
                     </div>
                     <div class="table-responsive">
-                        {% if position_list %}
-                            <h3>Your current holdings:</h3>
-                            <table class="table table-striped table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>Ticker Symbol</th>
-                                        <th>Shares</th>
-                                        <th>Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for row in position_list %}
-                                    <tr>
-                                        <td>{{ row[0] }}</td>
-                                        <td>{{ row[1] }}</td>
-                                        <td>$ {{ row[2] }}</td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        {% else %}
-                            <h3>You do not currently have any holdings.</h3>
+                        {% if not position_list and not result %}
+                            <h3>You do not currently have any holdings or transactions.</h3>
+                        {% elif position_list or result %}
+                            {% if position_list %}
+                                <h3>Your current holdings:</h3>
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Ticker Symbol</th>
+                                            <th>Shares</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in position_list %}
+                                        <tr>
+                                            <td>{{ row[0] }}</td>
+                                            <td>{{ row[1] }}</td>
+                                            <td>$ {{ row[2] }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            {% else %}
+                                <h3>You do not currently have any holdings.</h3>
                         {% endif %}
                         <br>
                     </div>
 
-                    <h3>Your transaction history:</h3>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th>Ticker Symbol</th>
-                                    <th>Shares</th>
-                                    <th>Value</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for row in result %}
-                                <tr>
-                                    <td>{{ row[0] }}</td>
-                                    <td>{{ row[1] }}</td>
-                                    <td>$ {{ row[2] }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+                        {% if result %}
+                            <h3>Your transaction history:</h3>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Ticker Symbol</th>
+                                            <th>Shares</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for row in result %}
+                                        <tr>
+                                            <td>{{ row[0] }}</td>
+                                            <td>{{ row[1] }}</td>
+                                            <td>$ {{ row[2] }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {% else %}
+                            <h3>You do not currently have any transactions. </h3>
+                        {% endif %}
+                    {% endif %}
                 </main>
             </div>
         </div>
