@@ -6,7 +6,8 @@ from flask import Flask, render_template, request, redirect, session
 app = Flask(__name__)
 username = ''
 
-@app.route('/',methods=['GET'])
+@app.route('/',methods=['GET','POST'])
+@app.route('/login',methods=['GET','POST'])
 def login():
     cannot_login = None
     if request.method=="GET":
