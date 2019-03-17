@@ -20,6 +20,7 @@ cursor.execute(
         num_shares FLOAT,
         owner_username INTEGER,
         last_price FLOAT,
+        date TEXT,
         FOREIGN KEY(owner_username) REFERENCES user(username)
     );"""
 )

@@ -101,7 +101,7 @@
                                     <tbody>
                                         {% for row in position_list %}
                                         <tr>
-                                            <td>{{ row[0] }}</td>
+                                            <td>{{ row[0]|upper }}</td>
                                             <td>{{ row[1] }}</td>
                                             <td>$ {{ row[2] }}</td>
                                         </tr>
@@ -123,14 +123,16 @@
                                             <th>Ticker Symbol</th>
                                             <th>Shares</th>
                                             <th>Value</th>
+                                            <th>Time Purchased</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for row in result %}
                                         <tr>
-                                            <td>{{ row[0] }}</td>
+                                            <td>{{ row[0]|upper }}</td>
                                             <td>{{ row[1] }}</td>
                                             <td>$ {{ row[2] }}</td>
+                                            <td>{{ row[3] }}</td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
