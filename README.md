@@ -1,4 +1,4 @@
-# web_trader
+# Web Trader
 Web Trader is a trading website that consolidates data from Nasdaq, allowing the user to search up the ticker symbol and price of any stock. I employed HTML and CSS to format all the pages and used Python for the back end development. All of the user information, transactions, holdings, and balances are stored in a SQLite3 database. Not only can users search up stocks, they can buy and sell using their own funds. The goal is to end up with a large profit. 
 
 ## Setup
@@ -38,3 +38,6 @@ The dashboard is where you can see all of your previous transactions as well as 
 
 ![Buy and Sell Menu](static/buy_sell.png?raw=true "Buy and Sell Menu")
 The buy and sell menu lets the user input the ticker symbol and quantity of the stock that they want to purchase/sell.
+
+### Issues and New Features :bug:
+Feel free to create a GitHub issue for this repo if you have any new ideas/bugs you want fixed!
