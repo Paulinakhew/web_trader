@@ -39,5 +39,19 @@ The dashboard is where you can see all of your previous transactions as well as 
 ![Buy and Sell Menu](static/buy_sell.png?raw=true "Buy and Sell Menu")
 The buy and sell menu lets the user input the ticker symbol and quantity of the stock that they want to purchase/sell.
 
+### SQLite3 Database
+The database is created using SQLite3. There are five tables in total, each serving a different purpose. For example, the transactions table is used to store the date, number of shares, and ticker symbols of all the users' purchases. This is the code for the transactions table:
+```SQLite3
+CREATE TABLE transactions(
+    pk INTEGER PRIMARY KEY AUTOINCREMENT,
+    ticker_symbol TEXT,
+    num_shares FLOAT,
+    owner_username INTEGER,
+    last_price FLOAT,
+    date TEXT,
+    FOREIGN KEY(owner_username) REFERENCES user(username)
+);
+```
+
 ### Issues and New Features :bug:
 Feel free to create a GitHub issue for this repo if you have any new ideas/bugs you want fixed!
