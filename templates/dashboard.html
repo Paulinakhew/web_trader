@@ -34,7 +34,6 @@
                 </li>
             </ul>
         </nav>
-
         <div class="container-fluid">
             <div class="row">
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -78,7 +77,6 @@
                         </ul>
                     </div>
                 </nav>
-
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                         <h1 class="h2">Dashboard</h1>
@@ -101,23 +99,20 @@
                                     </thead>
                                     <tbody>
                                         {% for row in position_list %}
-                                        <tr>
-                                            <td>{{ row[0]|upper }}</td>
-                                            <td>{{ row[1] }}</td>
-                                            <td>$ {{ row[2] }}</td>
-                                        </tr>
+                                            <tr>
+                                                <td>{{ row[0]|upper }}</td>
+                                                <td>{{ row[1] }}</td>
+                                                <td>$ {{ row[2] }}</td>
+                                            </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
                             {% else %}
-                                <h3>You do not currently have any holdings.</h3>
-                        {% endif %}
-                        <br>
-                    </div>
-
-                        {% if result %}
+                            <h3>You do not currently have any holdings.</h3>
+                            <br>
+                            {% endif %}
+                            {% if result %}
                             <h3>Your transaction history:</h3>
-                            <div class="table-responsive">
                                 <table class="table table-striped table-sm">
                                     <thead>
                                         <tr>
@@ -138,15 +133,14 @@
                                         {% endfor %}
                                     </tbody>
                                 </table>
-                            </div>
-                        {% else %}
-                            <h3>You do not currently have any transactions. </h3>
+                            {% else %}
+                                <h3>You do not currently have any transactions. </h3>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
+                    </div>
                 </main>
             </div>
         </div>
-        <!-- Icons -->
         <script src="https://unpkg.com/feather-icons@4.7.3/dist/feather.min.js"></script>
         <script>
             feather.replace()
