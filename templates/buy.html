@@ -20,13 +20,12 @@
         <meta name="author" content="Paulina Khew">
         <title>Buy Menu</title>
         <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
         <link href="https://getbootstrap.com/docs/4.1/examples/dashboard/dashboard.css" rel="stylesheet">
     </head>
+
     <body>
         <form action="/dashboard" Method="post">
         </form>
-    
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Web Trader | Buy Menu</a>
             <ul class="navbar-nav px-3">
@@ -40,23 +39,23 @@
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
-                                <li class="nav-item">
-                                        <a class="nav-link" href="/menu">
-                                            <span data-feather="home"></span>
-                                            Main Menu
-                                        </a>
-                                    </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/menu">
+                                    <span data-feather="home"></span>
+                                    Main Menu
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/dashboard">
                                     <span data-feather="file-text"></span>
                                     Dashboard 
                                 </a>
                             <li class="nav-item">
-                                    <a class="nav-link active" href="/buy">
-                                        <span data-feather="shopping-cart"></span>
-                                        Buy Menu <span class="sr-only">(current)</span>
-                                    </a>
-                                </li>
+                                <a class="nav-link active" href="/buy">
+                                    <span data-feather="shopping-cart"></span>
+                                    Buy Menu <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/sell">
                                     <span data-feather="shopping-cart"></span>
@@ -85,25 +84,24 @@
                     </div>
                 </nav>
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h1 class="h2">Buy Menu</h1>
-                            <div class="btn-toolbar mb-2 mb-md-0">
-                            </div>
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Buy Menu</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
                         </div>
-                        <img src="https://data.whicdn.com/images/313819682/large.jpg" alt="kermit" width=500 height=350>
-                        <form action="/buy" method="post">
-                            <input name="ticker_symbol" placeholder="symbol">
-                            <input name="number_of_shares" placeholder="no. of shares">
-                            <input type="submit">
-                        </form>    
-                        <h2>{{result}}</h2>
+                    </div>
+                    <img src="https://data.whicdn.com/images/313819682/large.jpg" alt="kermit" width=500 height=350>
+                    <form action="/buy" method="post">
+                        <input name="ticker_symbol" placeholder="symbol">
+                        <input name="number_of_shares" placeholder="no. of shares">
+                        <input type="submit">
+                    </form>    
+                    <h2>{{result}}</h2>
                 </main>
             </div>
-                    <!-- Icons -->
-        <script src="https://unpkg.com/feather-icons@4.7.3/dist/feather.min.js"></script>
-        <script>
-            feather.replace()
-        </script>
+            <script src="https://unpkg.com/feather-icons@4.7.3/dist/feather.min.js"></script>
+            <script>
+                feather.replace()
+            </script>
         </div>
     </body>
 </html>
