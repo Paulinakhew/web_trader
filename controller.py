@@ -10,6 +10,7 @@ username = ''
 @app.route('/login',methods=['GET','POST'])
 def login():
     cannot_login = None
+    m.log_out()
     if request.method=="GET":
         return render_template('login.html')
     else:

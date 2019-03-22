@@ -392,13 +392,33 @@ def update_leaderboard():
 #        shares = cursor.execute("SELECT num_shares FROM holdings WHERE ticker_symbol='{}'".format(symbol))
 #        profit = last_sale
 
-def log_out():
-    log_in('aosdnoindc','aonsdoianf')
+'''def log_out():
+    log_in('randomuser','opensesame')
     try:
         cursor.close()
         connection.close()
     except:
         print('connection already closed')
+'''
+
+def log_out():
+    connection = sqlite3.connect('trade_information.db',check_same_thread=False)
+    cursor = connection.cursor()
+
+    cursor.execute(
+    """REPLACE INTO current_user(
+        pk,
+        username
+    ) VALUES(
+        1,
+        '{}'
+    );""".format(
+        'randomuser'
+        )
+    )
+    connection.commit()
+    cursor.close()
+    connection.close()
 
 
 if __name__ == '__main__':

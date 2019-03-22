@@ -11,8 +11,7 @@ cursor.execute(
     ) VALUES(
         '{}'
     );""".format(
-        'randomuser',
-        'opensesame'
+        'randomuser'
     )
 )
 
