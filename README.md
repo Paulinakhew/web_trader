@@ -30,7 +30,7 @@ $ python3 controller.py
 **This is the login menu where you can login or create a new user account.**
 ![Login menu](static/login.png?raw=true "Login menu")
 
-**This is the main menu that opens after you log in. **
+**This is the main menu that opens after you log in.**
 ![Login menu](static/main_menu.png?raw=true "Main menu")
 
 **The dashboard is where you can see all of your previous transactions as well as current holdings.**
