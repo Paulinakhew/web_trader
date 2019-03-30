@@ -1,73 +1,49 @@
-    <!DOCTYPE html>
-    <html lang='en'>
-        <head>
-            <!-- this isn't displayed on the webpage -->
-            <link rel="apple-touch-icon" sizes="57x57" href="static/apple-icon-57x57.png">
-            <link rel="apple-touch-icon" sizes="60x60" href="static/apple-icon-60x60.png">
-            <link rel="apple-touch-icon" sizes="72x72" href="static/apple-icon-72x72.png">
-            <link rel="apple-touch-icon" sizes="76x76" href="static/apple-icon-76x76.png">
-            <link rel="apple-touch-icon" sizes="114x114" href="static/apple-icon-114x114.png">
-            <link rel="apple-touch-icon" sizes="120x120" href="static/apple-icon-120x120.png">
-            <link rel="apple-touch-icon" sizes="144x144" href="static/apple-icon-144x144.png">
-            <link rel="apple-touch-icon" sizes="152x152" href="static/apple-icon-152x152.png">
-            <link rel="apple-touch-icon" sizes="180x180" href="static/apple-icon-180x180.png">
-            <link rel="icon" type="image/png" sizes="192x192"  href="static/android-icon-192x192.png">
-            <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
-            <link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
-            <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
-            <meta charset="utf8">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <meta name="description" content="login menu">
-            <meta name="author" content="Paulina Khew">
-            <title>Create Account</title>
-            <!-- Bootstrap core CSS -->
-            <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-            <!-- Custom styles for this template -->
-            <link href="https://getbootstrap.com/docs/4.1/examples/sign-in/signin.css" rel="stylesheet">
-        </head>
-            
-        <body class="text-center">
-            <form action="/create" method="post" class="form-signin"> 
-                <style>
-                        body 
-                        {background: linear-gradient(#fff 0%, #b6eee2 25%,#9aece5 50%, #7df1e7 90%);}
-                        </style>
-                <!--TODO: I need to make the remember me check box work-->
-                <!--<img src="https://scontent-lga3-1.xx.fbcdn.net/v/t1.15752-9/39822907_2602539103105268_8456832314251411456_n.jpg?_nc_cat=0&oh=c36043f55849998dc94d98dbfaa422a4&oe=5BECF047" alt="kermit" width=350 height=350>-->
-                <img class="mb-4" src="static/blank_user.png" alt="Blank user image" width="72" height="72">
-                <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
-                <div>
-                    <input name="username" placeholder="username" required>
-                    <input name="password" placeholder="password" required>
-                    <input name="funds" placeholder="funds" required>
-                </div>
-                    <!--<label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>-->
-                </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
-                <a href="/login">Go back to login</a>
-                <p class="mt-5 mb-3 text-muted">&copy; Paulina Khew 2019</p>
-            </form>
-            </span>
-        </body>
-    </html>
-    
-    
-    <!--body 
-    {background: linear-gradient(#93B874 10%, #C9DCB9 40%, #17a2b8 70%, #007bff 90%);}
-                    {background: linear-gradient(#28a745 5%, #93B874 20%, #17a2b8 70%, #007bff 90%);}-->
-    
-    <!-- light blue gradient                     {background: linear-gradient(#fff 0%, #b1e6ee 30%,#86dce9 50%, #5fbbf0 90%);}-->
-    
-    
-    
-    <!--{background-color: #17a2b8;}-->
-    
-    
-    <!--<h3>Hi, <span style="color:red"> {{name}} </span></h3> -->
-    <!-- <h3>Hi, <span style="color:#00FF00"> {{name}} </span></h3> -->
-    
-    
-    
-    
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <link rel="apple-touch-icon" sizes="57x57" href="static/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="static/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="static/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="static/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="static/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="static/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="static/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="static/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="static/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="static/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+        <meta charset="utf8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="login menu">
+        <meta name="author" content="Paulina Khew">
+        <title>Create Account</title>
+        <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://getbootstrap.com/docs/4.1/examples/sign-in/signin.css" rel="stylesheet">
+    </head>
+
+    <body class="text-center">
+        <form action="/create" method="post" class="form-signin"> 
+            <style>
+                body {
+                    background: linear-gradient(#fff 0%, #b6eee2 25%,#9aece5 50%, #7df1e7 90%);
+                }
+            </style>
+            <img class="mb-4" src="static/blank_user.png" alt="Blank user image" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
+            <div>
+                <input name="username" placeholder="username" required>
+                <input name="password" placeholder="password" required>
+                <input name="funds" placeholder="funds" required>
+            </div>
+            <!--TODO: I need to make the remember me check box work-->
+            <!--<label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>-->
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
+            <a href="/login">Go back to login</a>
+            <p class="mt-5 mb-3 text-muted">&copy; Paulina Khew 2019</p>
+        </form>
+    </body>
+</html>
