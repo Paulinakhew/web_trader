@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang='en'>
     <head>
-        <!-- this isn't displayed on the webpage -->
         <meta charset="utf8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="login menu">
         <meta name="author" content="Paulina Khew">
         <title>Login</title>
-        <!-- Bootstrap core CSS -->
         <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
         <link href="https://getbootstrap.com/docs/4.1/examples/sign-in/signin.css" rel="stylesheet">
         <link rel="apple-touch-icon" sizes="57x57" href="static/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="static/apple-icon-60x60.png">
@@ -25,18 +22,18 @@
         <link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
     </head>
-        
+
     <body class="text-center">
         <form action="/login" method="post" class="form-signin"> 
             <style>
-                    body 
-                    {background: linear-gradient(#fff 0%, #b6e6ee 25%,#9ae1ec 50%, #7dc7f1 90%);}
-                    </style>
-            <!--TODO: I need to make the remember me check box work-->
+                body {
+                    background: linear-gradient(#fff 0%, #b6e6ee 25%,#9ae1ec 50%, #7dc7f1 90%);
+                }
+            </style>
             {% if cannot_login %}
-            <div class="alert alert-primary" role="alert">
-                Your username and password are invalid. Try creating a new account. 
-            </div>
+                <div class="alert alert-primary" role="alert">
+                    Your username and password are invalid. Try creating a new account. 
+                </div>
             {% endif %}
             <img class="mb-4" src="static/arrow.png" alt="Arrow that looks like a line graph" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -46,41 +43,22 @@
             </div>
             <input type="checkbox" onclick="myFunction()">Show Password
             <script>
-            function myFunction() {
-                var x = document.getElementById("myInput");
-                if (x.type === "password") {
-                    x.type = "text";
-                } else {
-                    x.type = "password";
+                function myFunction() {
+                    var x = document.getElementById("myInput");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
                 }
-            }</script>
-                <!--<label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>-->
-            </div>
+            </script>
+            <!--TODO: I need to make the remember me check box work-->
+            <!--<label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>-->
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             <a href="/create">Create an Account</a>
             <p class="mt-5 mb-3 text-muted">&copy; Paulina Khew 2019</p>
         </form>
-        </span>
     </body>
 </html>
-
-
-<!--body 
-{background: linear-gradient(#93B874 10%, #C9DCB9 40%, #17a2b8 70%, #007bff 90%);}
-                {background: linear-gradient(#28a745 5%, #93B874 20%, #17a2b8 70%, #007bff 90%);}-->
-
-<!-- light blue gradient                     {background: linear-gradient(#fff 0%, #b1e6ee 30%,#86dce9 50%, #5fbbf0 90%);}-->
-
-
-
-<!--{background-color: #17a2b8;}-->
-
-
-<!--<h3>Hi, <span style="color:red"> {{name}} </span></h3> -->
-<!-- <h3>Hi, <span style="color:#00FF00"> {{name}} </span></h3> -->
-<!-- this is how you comment stuff out -->
-
-
-
