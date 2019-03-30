@@ -27,17 +27,17 @@ $ python3 controller.py
 - Paste http://127.0.0.1:5000/login into your web browser and have fun! 🤩
 
 ## Example Photos
+**This is the login menu where you can login or create a new user account.**
 ![Login menu](static/login.png?raw=true "Login menu")
-This is the login menu where you can login or create a new user account. 
 
+**This is the main menu that opens after you log in.**
 ![Login menu](static/main_menu.png?raw=true "Main menu")
-This is the main menu that opens after you log in. 
 
+**The dashboard is where you can see all of your previous transactions as well as current holdings.**
 ![Dashboard](static/dashboard.png?raw=true "Dashboard")
-The dashboard is where you can see all of your previous transactions as well as current holdings.
 
+**The buy and sell menu lets the user input the ticker symbol and quantity of the stock that they want to purchase/sell.**
 ![Buy and Sell Menu](static/buy_sell.png?raw=true "Buy and Sell Menu")
-The buy and sell menu lets the user input the ticker symbol and quantity of the stock that they want to purchase/sell.
 
 ### SQLite3 Database
 The database is created using SQLite3. There are five tables in total, each serving a different purpose. For example, the transactions table is used to store the date, number of shares, and ticker symbols of all the users' purchases. This is the code for the transactions table:
