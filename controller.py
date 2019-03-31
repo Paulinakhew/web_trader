@@ -29,7 +29,7 @@ def login():
 
 
 @app.route('/menu',methods=['GET','POST'])
-def mainmenu():
+def menu():
     current_user = m.current_user()
     if request.method=="GET":
         if current_user == 'randomuser':
@@ -181,14 +181,14 @@ def contact():
     else:
         return render_template('contact.html')
 
-@app.route('/bs', methods=['GET','POST'])
-def buyandsell():
+@app.route('/trade', methods=['GET','POST'])
+def trade():
     current_user = m.current_user()
     if request.method=="GET":
         if current_user == 'randomuser':
             return redirect('/')
         else:
-            return render_template('bs.html')
+            return render_template('trade.html')
     elif request.method=="POST":
         try:
             submitted_symbol=request.form['ticker_symbol']
@@ -199,9 +199,9 @@ def buyandsell():
             m.update_holdings()
             if confirmation_message == True:
                 m.buy_db(return_list)
-                return render_template('bs.html', result=result)
+                return render_template('trade.html', result=result)
             else:
-                return render_template('bs.html')
+                return render_template('trade.html')
     #elif request.method=="POST":
         except:
             submitted_symbols=request.form['ticker_symb']
@@ -212,9 +212,9 @@ def buyandsell():
             m.update_holdings()
             if confirmation_message == True:
                 m.sell_db(return_list)
-                return render_template('bs.html', results=results)
+                return render_template('trade.html', results=results)
         else:
-            return render_template('bs.html')
+            return render_template('trade.html')
 
 @app.route('/lq', methods=['GET','POST'])
 def lookupquote():
