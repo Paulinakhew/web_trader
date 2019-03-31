@@ -31,14 +31,15 @@
                 <div class="inner">
                     <h3 class="masthead-brand"><a href="https://www.linkedin.com/in/paulina-khew-6063a5168/">Paulina Khew's</a> Web Trader</h3>
                     <nav class="nav nav-masthead justify-content-center">
-                        <a class="nav-link active" href="/menu">Menu</a>
-                        <a class="nav-link" href="/dashboard">Dashboard</a>
-                        <a class="nav-link" href="/bs">Buy Menu</a>
-                        <a class="nav-link" href="/bs">Sell Menu</a>
-                        <a class="nav-link" href="/lq">Symbol Lookup</a>
-                        <a class="nav-link" href="/lq">Stock Quote</a>
-                        <a class="nav-link" href="/leaderboard">Leaderboard</a>
-                        <a class="nav-link" href="/login">Exit</a>
+                        <a class="nav-link active" href={{ url_for('mainmenu') }}>Menu</a>
+                        <a class="nav-link" href={{ url_for('dashboard') }}>Dashboard</a>
+                        <a class="nav-link" href={{ url_for('buyandsell') }}>Buy Menu</a>
+                        <a class="nav-link" href={{ url_for('buyandsell') }}>Sell Menu</a>
+                        <a class="nav-link" href={{ url_for('lookupquote') }}>Symbol Lookup</a>
+                        <a class="nav-link" href={{ url_for('lookupquote') }}>Stock Quote</a>
+                        <a class="nav-link" href={{ url_for('leaderboard') }}>Leaderboard</a>
+                        <a class="nav-link" href={{ url_for('login') }}>Exit</a>
+                        {{ url_for('') }}
                     </nav>
                 </div>
             </header>
