@@ -19,9 +19,7 @@
         <link rel="icon" type="image/png" sizes="96x96" href="static/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
         <title>Menu</title>
-        <!-- Bootstrap core CSS -->
         <link href="https://getbootstrap.com/docs/4.1/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
         <link href="https://getbootstrap.com/docs/4.1/examples/cover/cover.css" rel="stylesheet">
     </head>
 
@@ -39,12 +37,11 @@
                         <a class="nav-link" href={{ url_for('lookupquote') }}>Stock Quote</a>
                         <a class="nav-link" href={{ url_for('leaderboard') }}>Leaderboard</a>
                         <a class="nav-link" href={{ url_for('login') }}>Exit</a>
-                        {{ url_for('') }}
                     </nav>
                 </div>
             </header>
             <main role="main" class="inner cover">
-                <img src="static/web_trading.jpg" alt="stock trading photo" width=350 height=350>
+                <img src="static/trading.jpg" alt="Stock Trading photo" width=500 height=350>
                 <h1 class="cover-heading">Web Trader Menu</h1>
                 <p class="lead">Welcome to web trader! You can look up ticker symbols, search for the last price of any stock on Nasdaq, and buy and sell with your own funds. </p>
                 <p class="lead">
