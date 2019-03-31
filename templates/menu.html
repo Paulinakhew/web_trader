@@ -29,11 +29,11 @@
                 <div class="inner">
                     <h3 class="masthead-brand"><a href="https://www.linkedin.com/in/paulinakhew/" target="_blank">Paulina Khew's</a> Web Trader</h3>
                     <nav class="nav nav-masthead justify-content-center">
-                        <a class="nav-link active" href="">Menu</a>
-                        <a class="nav-link" href="/dashboard">Dashboard</a>
-                        <a class="nav-link" href="/bs">Buy and Sell Menu</a>
-                        <a class="nav-link" href="/lq">Lookup and Quote</a>
-                        <a class="nav-link" href="/login">Exit</a>
+                        <a class="nav-link active" href={{ url_for('mainmenu') }}>Menu</a>
+                        <a class="nav-link" href={{ url_for('dashboard') }}>Dashboard</a>
+                        <a class="nav-link" href={{ url_for('buyandsell') }}>Buy and Sell Menu</a>
+                        <a class="nav-link" href={{ url_for('lookupquote') }}>Lookup and Quote</a>
+                        <a class="nav-link" href={{ url_for('login') }}>Exit</a>
                     </nav>
                 </div>
             </header>
@@ -56,4 +56,4 @@
         <script src="../../assets/js/vendor/popper.min.js"></script>
         <script src="../../dist/js/bootstrap.min.js"></script>
     </body>
-</html>
+</htgml>
