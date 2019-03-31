@@ -30,7 +30,7 @@
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Web Trader | Your Portfolio</a>
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="/login">Sign out</a>
+                    <a class="nav-link" href={{ url_for('login') }}>Sign out</a>
                 </li>
             </ul>
         </nav>
@@ -40,7 +40,7 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="/menu">
+                                <a class="nav-link" href={{ url_for('menu') }}>
                                     <span data-feather="home"></span>
                                     Main Menu
                                 </a>
@@ -51,25 +51,25 @@
                                     Dashboard <span class="sr-only">(current)</span>
                                 </a>
                             <li class="nav-item">
-                                <a class="nav-link" href="/bs">
+                                <a class="nav-link" href={{ url_for('trade') }}>
                                     <span data-feather="shopping-cart"></span>
                                     Buy and Sell Menu
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/lq">
+                                <a class="nav-link" href={{ url_for('lq') }}>
                                     <span data-feather="bar-chart"></span>
                                     Lookup and Quote
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/contact">
+                                <a class="nav-link" href={{ url_for('contact') }}>
                                     <span data-feather="users"></span>
                                     Contact Paulina Khew
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/login">
+                                <a class="nav-link" href={{ url_for('login') }}>
                                     <span data-feather="users"></span>
                                     Exit
                                 </a>

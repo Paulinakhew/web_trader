@@ -29,7 +29,7 @@
             <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="">Web Trader | Stock Quote</a>
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="/login">Sign out</a>
+                    <a class="nav-link" href={{ url_for('login') }}>Sign out</a>
                 </li>
             </ul>
         </nav>
@@ -39,42 +39,42 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="/menu">
+                                <a class="nav-link" href={{ url_for('menu') }}>
                                     <span data-feather="home"></span>
                                     Main Menu
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/dashboard">
+                                <a class="nav-link" href={{ url_for('dashboard') }}>
                                     <span data-feather="file-text"></span>
                                     Dashboard 
                                 </a>
                             <li class="nav-item">
-                                <a class="nav-link" href="/buy">
+                                <a class="nav-link" href={{ url_for('buy') }}>
                                     <span data-feather="shopping-cart"></span>
                                     Buy Menu
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/sell">
+                                <a class="nav-link" href={{ url_for('sell') }}>
                                     <span data-feather="shopping-cart"></span>
                                     Sell Menu 
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/lookup">
+                                <a class="nav-link" href={{ url_for('lookup') }}>
                                     <span data-feather="bar-chart"></span>
                                     Symbol Lookup
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/quote">
+                                <a class="nav-link active" href={{ url_for('quote') }}>
                                     <span data-feather="bar-chart-2"></span>
                                     Stock Quote <span class="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/login">
+                                <a class="nav-link" href={{ url_for('login') }}>
                                     <span data-feather="users"></span>
                                     Exit
                                 </a>

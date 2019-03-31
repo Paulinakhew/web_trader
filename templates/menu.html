@@ -29,11 +29,11 @@
                 <div class="inner">
                     <h3 class="masthead-brand"><a href="https://www.linkedin.com/in/paulinakhew/" target="_blank">Paulina Khew's</a> Web Trader</h3>
                     <nav class="nav nav-masthead justify-content-center">
-                        <a class="nav-link active" href="">Menu</a>
-                        <a class="nav-link" href="/dashboard">Dashboard</a>
-                        <a class="nav-link" href="/bs">Buy and Sell Menu</a>
-                        <a class="nav-link" href="/lq">Lookup and Quote</a>
-                        <a class="nav-link" href="/login">Exit</a>
+                        <a class="nav-link active" href={{ url_for('menu') }}>Menu</a>
+                        <a class="nav-link" href={{ url_for('dashboard') }}>Dashboard</a>
+                        <a class="nav-link" href={{ url_for('trade') }}>Buy and Sell Menu</a>
+                        <a class="nav-link" href={{ url_for('lq') }}>Lookup and Quote</a>
+                        <a class="nav-link" href={{ url_for('login') }}>Exit</a>
                     </nav>
                 </div>
             </header>
@@ -42,7 +42,7 @@
                 <h1 class="cover-heading">Web Trader Menu</h1>
                 <p class="lead">Welcome to web trader! You can look up ticker symbols, search for the last price of any stock on Nasdaq, and buy and sell with your own funds. </p>
                 <p class="lead">
-                    <a href="/contact" class="btn btn-lg btn-secondary">Contact Paulina Khew</a>
+                    <a href={{ url_for('contact') }} class="btn btn-lg btn-secondary">Contact Paulina Khew</a>
                 </p>
             </main>
             <footer class="mastfoot mt-auto">
@@ -56,4 +56,4 @@
         <script src="../../assets/js/vendor/popper.min.js"></script>
         <script src="../../dist/js/bootstrap.min.js"></script>
     </body>
-</html>
+</htgml>
