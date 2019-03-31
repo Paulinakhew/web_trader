@@ -217,7 +217,7 @@ def trade():
             return render_template('trade.html')
 
 @app.route('/lq', methods=['GET','POST'])
-def lookupquote():
+def lq():
     current_user = m.current_user()
     if request.method=="GET":
         if current_user == 'randomuser':

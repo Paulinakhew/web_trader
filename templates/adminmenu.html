@@ -32,7 +32,7 @@
                         <a class="nav-link active" href={{ url_for('menu') }}>Menu</a>
                         <a class="nav-link" href={{ url_for('dashboard') }}>Dashboard</a>
                         <a class="nav-link" href={{ url_for('trade') }}>Buy and Sell Menu</a>
-                        <a class="nav-link" href={{ url_for('lookupquote') }}>Lookup and Quote</a>
+                        <a class="nav-link" href={{ url_for('lq') }}>Lookup and Quote</a>
                         <a class="nav-link" href={{ url_for('leaderboard') }}>Leaderboard</a>
                         <a class="nav-link" href={{ url_for('login') }}>Exit</a>
                     </nav>
@@ -43,7 +43,7 @@
                 <h1 class="cover-heading">Web Trader Menu</h1>
                 <p class="lead">Welcome to web trader! You can look up ticker symbols, search for the last price of any stock on Nasdaq, and buy and sell with your own funds. </p>
                 <p class="lead">
-                    <a href="/contact" class="btn btn-lg btn-secondary">Contact Paulina Khew</a>
+                    <a href={{ url_for('contact') }} class="btn btn-lg btn-secondary">Contact Paulina Khew</a>
                 </p>
             </main>
             <footer class="mastfoot mt-auto">
