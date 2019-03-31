@@ -41,28 +41,30 @@
                 <h1 class="display-4 font-weight-normal">Lookup and Quote Menu</h1>
                 <p class="lead font-weight-normal">You can lookup the ticker symbol and find the last price of any given stock on Nasdaq.</p>
             </div>
-        <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-        <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-            <div class="my-3 py-3">
-                <h2 class="display-5">Symbol Lookup</h2>
-                <form action="/lq" method="post">
-                    <input name="company_name" placeholder="company">            
-                    <input type="submit">
-                </form>
-                <h2>{{resultthree}}</h2>
-                </p>
+            <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+                <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+                    <div class="my-3 py-3">
+                        <h2 class="display-5">Symbol Lookup</h2>
+                        <p class="lead">
+                            <form action="/lq" method="post">
+                                <input name="company_name" placeholder="company">            
+                                <input type="submit">
+                            </form>
+                            <h2>{{resultthree}}</h2>
+                        </p>
+                    </div>
+                </div>
+                <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+                    <div class="my-3 p-3">
+                        <h2 class="display-5">Stock Quote</h2>
+                        <form action="/lq" method="post">
+                            <input name="ticker_symbol" placeholder="Symbol">
+                            <input type="submit">
+                        </form>
+                        <h2>{{resultfour}}</h2>
+                    </div>
+                </div>    
             </div>
-            <!--<div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>-->
-        </div>
-        <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-            <div class="my-3 p-3">
-                <h2 class="display-5">Stock Quote</h2>
-                <form action="/lq" method="post">
-                    <input name="ticker_symbol" placeholder="Symbol">
-                    <input type="submit">
-                </form>
-                <h2>{{resultfour}}</h2>
-            </div>    
         </div>
         <footer class="container py-5">
             <div class="row">
