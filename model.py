@@ -105,7 +105,6 @@ def sell_db(return_list):
     current_balance = return_list[2]
     trade_volume = return_list[3]
     agg_balance = return_list[4]
-#    username = return_list[5]
     username = current_user()
     ticker_symbol = return_list[6]
     current_number_shares = return_list[7]
@@ -151,7 +150,7 @@ def buy(username, ticker_symbol, trade_volume):
     brokerage_fee = 6.95 #TODO un-hardcode this value
     username = current_user()
     current_balance = get_user_balance(username)
-    #TODO un-hardcode this value
+    #TODO: un-hardcode this value
     transaction_cost = (trade_volume * last_price) + brokerage_fee
     left_over = float(current_balance) - float(transaction_cost)
     return_list = (last_price, brokerage_fee, current_balance, trade_volume,left_over,username,ticker_symbol)

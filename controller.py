@@ -216,28 +216,28 @@ def trade():
         else:
             return render_template('trade.html')
 
-@app.route('/lq', methods=['GET','POST'])
-def lq():
+@app.route('/search', methods=['GET','POST'])
+def search():
     current_user = m.current_user()
     if request.method=="GET":
         if current_user == 'randomuser':
             return redirect('/')
         else:
-            return render_template('lq.html')
+            return render_template('search.html')
     elif request.method=="POST":
         try:
             submitted_company_name=request.form['company_name']
             ticker_symboll = m.lookup_ticker_symbol(submitted_company_name)
             result = "The ticker symbol for {} is {}.".format(submitted_company_name, ticker_symboll)
             #result = "The last price of {} is $".format(submitted_company_name)
-            return render_template('lq.html',resultthree=result)
+            return render_template('search.html',resultthree=result)
         except:
             submitted_symbol=request.form['ticker_symbol']
             price = m.quote_last_price(submitted_symbol)
             results = "The last price of {} is ${}.".format(submitted_symbol, price)
-            return render_template('lq.html',resultfour=results)
+            return render_template('search.html',resultfour=results)
         else:
-            return render_template('lq.html')
+            return render_template('search.html')
     
 
 if __name__ == '__main__':
