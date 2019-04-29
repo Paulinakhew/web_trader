@@ -27,7 +27,6 @@ def login():
             cannot_login = True
             return render_template('login.html', cannot_login=cannot_login)
 
-
 @app.route('/menu',methods=['GET','POST'])
 def menu():
     current_user = m.current_user()
@@ -39,7 +38,6 @@ def menu():
     else:
         return render_template('menu.html')
 
-
 @app.route('/adminmenu',methods=['GET','POST'])
 def adminmenu():
     current_user = m.current_user()
@@ -50,7 +48,6 @@ def adminmenu():
             return render_template('adminmenu.html')
     else:
         return render_template('adminmenu.html')
-
 
 @app.route('/create',methods=['GET','POST'])
 def create():
@@ -91,14 +88,6 @@ def quote():
         price = m.quote_last_price(submitted_symbol)
         result = "The last price of {} is ${}.".format(submitted_symbol, price)
         return render_template('quote.html',result=result)
-
-# TODO app.route trade should do both buys and sells
-# @app.route('/trade',methods=['GET','POST'])
-# def buy():
-#    if request.method=="GET":
-#        return render_template('trade.html')
-#    else:
-#       pass
 
 @app.route('/buy',methods=['GET','POST'])
 def buy():
@@ -168,7 +157,6 @@ def dashboard():
             return render_template('dashboard.html',position_list=user_holdings, result=user_transactions)
     else:
         return render_template('dashboard.html',result=None)
-
 
 @app.route('/contact', methods=['GET','POST'])
 def contact():
