@@ -33,6 +33,11 @@
             <img class="mb-4" src="static/blank_user.png" alt="Blank user image" width="72" height="72">
             <h1 class="h3 mb-3 font-weight-normal">Create an Account</h1>
             <div>
+                {% if cannot_login %}
+                    <div class="alert alert-primary" role="alert">
+                        Your username and password are invalid. Try creating a new account. 
+                    </div>
+                {% endif %}
                 <input name="username" placeholder="username" required>
                 <input name="password" placeholder="password" required>
                 <input name="funds" placeholder="funds" required>

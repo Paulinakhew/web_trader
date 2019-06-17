@@ -51,14 +51,19 @@ def adminmenu():
 
 @app.route('/create',methods=['GET','POST'])
 def create():
+    cannot_login = None
     if request.method=="GET":
         return render_template('create.html')
     else:
         submitted_username = request.form['username']
         submitted_password = request.form['password']
         submitted_funds = request.form['funds']
-        m.create_(submitted_username,submitted_password,submitted_funds)
-        return redirect('/')
+        result = m.create_(submitted_username,submitted_password,submitted_funds)
+        if result == True:
+            return redirect('/')
+        else:
+            cannot_login = True
+            return render_template('create.html',cannot_login=cannot_login)
 
 @app.route('/lookup',methods=['GET','POST'])
 def look_up():

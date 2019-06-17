@@ -35,18 +35,21 @@ def log_in(user_name,password):
 def create_(new_user,new_password,new_fund):
     connection = sqlite3.connect('trade_information.db',check_same_thread=False)
     cursor = connection.cursor()
-    cursor.execute(
-        """INSERT INTO user(
-            username,
-            password,
-            current_balance
-            ) VALUES(
-            "{}",
-            "{}",
-            {}
-        );""".format(new_user, new_password, new_fund)
-    )
-    connection.commit()
+    try:
+        cursor.execute(
+            """INSERT INTO user(
+                username,
+                password,
+                current_balance
+                ) VALUES(
+                "{}",
+                "{}",
+                {}
+            );""".format(new_user, new_password, new_fund)
+        )
+        connection.commit()
+    except:
+        return False
     cursor.close()
     connection.close()
 
