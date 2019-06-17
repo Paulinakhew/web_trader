@@ -89,7 +89,7 @@
                     </div>
                     <form action="/sell" method="post">
                         <input name="ticker_symbol" placeholder="symbol">
-                        <input name="number_of_shares" placeholder="no. of shares">
+                        <input name="number_of_shares" type="number" min="0" step="any" placeholder="number of shares">
                         <input type="submit">
                     </form>    
                     <h2>{{result}}</h2>

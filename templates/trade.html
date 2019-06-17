@@ -48,7 +48,7 @@
                         <p class="lead">
                             <form action="/trade" method="post">
                                 <input name="ticker_symbol" placeholder="symbol">
-                                <input name="number_of_shares" placeholder="no. of shares">
+                                <input name="number_of_shares" type="number" min="0" placeholder="number of shares">
                                 <input type="submit">
                             </form>    
                             <h2>{{result}}</h2>
@@ -60,7 +60,7 @@
                         <h2 class="display-5">Sell</h2>
                         <form action="/trade" method="post">
                             <input name="ticker_symb" placeholder="symbol">
-                            <input name="number_shares" placeholder="no. of shares">
+                            <input name="number_shares" type="number" min="0" placeholder="number of shares">
                             <input type="submit">
                         </form>    
                         <h2>{{results}}</h2>

@@ -92,7 +92,7 @@
                     <img src="https://data.whicdn.com/images/313819682/large.jpg" alt="kermit" width=500 height=350>
                     <form action="/buy" method="post">
                         <input name="ticker_symbol" placeholder="symbol">
-                        <input name="number_of_shares" placeholder="no. of shares">
+                        <input name="number_of_shares" type="number" min="0" placeholder="number of shares">
                         <input type="submit">
                     </form>    
                     <h2>{{result}}</h2>
