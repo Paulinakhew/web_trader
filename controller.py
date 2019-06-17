@@ -51,7 +51,7 @@ def adminmenu():
 
 @app.route('/create',methods=['GET','POST'])
 def create():
-    cannot_login = None
+    cannot_create = None
     if request.method=="GET":
         return render_template('create.html')
     else:
@@ -62,8 +62,8 @@ def create():
         if result == True:
             return redirect('/')
         else:
-            cannot_login = True
-            return render_template('create.html',cannot_login=cannot_login)
+            cannot_create = True
+            return render_template('create.html',cannot_create=cannot_create)
 
 @app.route('/lookup',methods=['GET','POST'])
 def look_up():
