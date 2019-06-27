@@ -111,6 +111,8 @@ def sell_db(return_list):
     username = current_user()
     ticker_symbol = return_list[6]
     current_number_shares = return_list[7]
+    now = datetime.datetime.now()
+    date = now.strftime("%Y-%m-%d %I:%M %p")
 
     #user
     cursor.execute("""
@@ -125,10 +127,11 @@ def sell_db(return_list):
         ticker_symbol,
         num_shares,
         owner_username,
-        last_price
+        last_price,
+        date
         ) VALUES(
-        '{}',{},'{}',{}
-        );""".format(ticker_symbol,trade_volume*-1,username,last_price)
+        '{}',{},'{}',{}, '{}'
+        );""".format(ticker_symbol, trade_volume*-1, username, last_price, date)
     )
     #holdings
     #at this point, it it assumed that the user has enough shares to sell.
