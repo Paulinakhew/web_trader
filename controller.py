@@ -206,8 +206,8 @@ def trade():
             if confirmation_message == True:
                 m.sell_db(return_list)
                 return render_template('trade.html', results=results)
-        else:
-            return render_template('trade.html')
+            else:
+                return render_template('trade.html', cannot_sell = True)
 
 @app.route('/search', methods=['GET','POST'])
 def search():

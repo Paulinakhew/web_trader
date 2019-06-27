@@ -41,6 +41,20 @@
                 <h1 class="display-4 font-weight-normal">Buy and Sell Menu</h1>
                 <p class="lead font-weight-normal">You can buy and sell any given stock on Nasdaq.</p>
             </div>
+            {% if cannot_sell %}
+                <div class="alert alert-danger" role="alert">
+                    You do not have enough quantity of this stock to sell. 
+                </div>
+            {% endif %}
+            {% if result %}
+                <div class="alert alert-success" role="alert">
+                    {{result}} 
+                </div>
+            {% elif results %}
+                <div class="alert alert-success" role="alert">
+                    {{results}} 
+                </div>
+            {% endif %}
             <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
                 <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
                     <div class="my-3 py-3">
@@ -50,8 +64,7 @@
                                 <input name="ticker_symbol" placeholder="symbol">
                                 <input name="number_of_shares" type="number" min="0" placeholder="number of shares">
                                 <input type="submit">
-                            </form>    
-                            <h2>{{result}}</h2>
+                            </form> 
                         </p>
                     </div>
                 </div>
@@ -63,7 +76,6 @@
                             <input name="number_shares" type="number" min="0" placeholder="number of shares">
                             <input type="submit">
                         </form>    
-                        <h2>{{results}}</h2>
                     </div>    
                 </div>
             </div>
