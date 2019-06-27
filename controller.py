@@ -128,7 +128,10 @@ def sell():
         submitted_volume=request.form['number_of_shares']
         submitted_volume = int(submitted_volume)
         confirmation_message, return_list = m.sell(username,submitted_symbol,submitted_volume)
-        result = "You sold {} shares of {}.".format(submitted_volume, submitted_symbol)
+        if submitted_volume < 2:
+            result = "You sold {} share of {}.".format(submitted_volume, submitted_symbol)
+        else:
+            result = "You sold {} shares of {}.".format(submitted_volume, submitted_symbol)
         m.update_holdings()
         if confirmation_message == True:
             m.sell_db(return_list)
@@ -188,7 +191,10 @@ def trade():
             submitted_volume=request.form['number_of_shares']
             submitted_volume = int(submitted_volume)
             confirmation_message, return_list = m.buy(username,submitted_symbol,submitted_volume)
-            result = "You bought {} shares of {}.".format(submitted_volume, submitted_symbol)
+            if submitted_volume == 1:
+                result = "You bought {} share of {}.".format(submitted_volume, submitted_symbol)
+            else:
+                result = "You bought {} shares of {}.".format(submitted_volume, submitted_symbol)
             m.update_holdings()
             if confirmation_message == True:
                 m.buy_db(return_list)
@@ -201,7 +207,10 @@ def trade():
             submitted_volumes=request.form['number_shares']
             submitted_volumes= int(submitted_volumes)
             confirmation_message, return_list = m.sell(username,submitted_symbols,submitted_volumes)
-            results = "You sold {} shares of {}.".format(submitted_volumes, submitted_symbols)
+            if submitted_volumes == 1:
+                results = "You sold {} share of {}.".format(submitted_volumes, submitted_symbols)
+            else:
+                results = "You sold {} shares of {}.".format(submitted_volumes, submitted_symbols)
             m.update_holdings()
             if confirmation_message == True:
                 m.sell_db(return_list)
