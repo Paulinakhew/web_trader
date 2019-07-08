@@ -48,6 +48,7 @@ def create_(new_user,new_password,new_fund):
             );""".format(new_user, new_password, new_fund)
         )
         connection.commit()
+        return True
     except:
         return False
     cursor.close()

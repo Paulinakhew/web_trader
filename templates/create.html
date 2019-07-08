@@ -35,17 +35,13 @@
             <div>
                 {% if cannot_create %}
                     <div class="alert alert-primary" role="alert">
-                        Your username and password are invalid. Try creating a new account. 
+                        An account with that username already exists. Please create a new one.
                     </div>
                 {% endif %}
                 <input name="username" placeholder="username" required>
                 <input name="password" placeholder="password" required>
                 <input name="funds" placeholder="funds" type="number" min="0" step="any" required>
             </div>
-            <!--TODO: I need to make the remember me check box work-->
-            <!--<label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>-->
             <button class="btn btn-lg btn-primary btn-block" type="submit">Create Account</button>
             <a href={{ url_for('login') }}>Go back to login</a>
             <p class="mt-5 mb-3 text-muted">&copy; Paulina Khew 2019</p>
