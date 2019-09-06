@@ -2,7 +2,11 @@
 Web Trader is a trading website that consolidates data from Nasdaq, allowing the user to search up the ticker symbol and price of any stock. I employed HTML and CSS to format all the pages and used Python for the back end development. All of the user information, transactions, holdings, and balances are stored in a SQLite3 database. Not only can users search up stocks, they can buy and sell using their own funds. The goal is to end up with a large profit. 
 
 ## Setup
-- Clone or download the repository.
+- Clone (or download) the repository:
+```ShellSession
+git clone git@github.com:Paulinakhew/web_trader.git
+```
+
 - Download all the necessary packages:
 
 * **MacOS Users**
@@ -24,7 +28,7 @@ $ python3 seed.py
 ```ShellSession
 $ python3 controller.py
 ```
-- Paste http://127.0.0.1:5000/login into your web browser and have fun! 🤩
+- Paste http://127.0.0.1:5000 into your web browser and have fun! 🤩
 
 ## Example Photos
 **This is the login menu where you can login or create a new user account.**
@@ -53,5 +57,5 @@ CREATE TABLE transactions(
 );
 ```
 
-### Issues and New Features :bug:
-Feel free to create a GitHub issue for this repo if you have any new ideas/bugs you want fixed!
+### New Features :sparkles:
+Feel free to create a GitHub issue for this repository if you have any new ideas!
