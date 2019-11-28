@@ -18,7 +18,6 @@ def login():
         submitted_password = request.form['password']
         result = m.log_in(submitted_username,submitted_password)
         if result == True:
-            username = submitted_username
             return redirect('/menu')
         else:
             cannot_login = True

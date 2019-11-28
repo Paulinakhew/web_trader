@@ -7,6 +7,7 @@ import pandas as pd
 import datetime
 
 def current_user():
+    '''Selects the username of the current user from the current_user db'''
     connection = sqlite3.connect('trade_information.db',check_same_thread=False)
     cursor = connection.cursor()
     query = 'SELECT username FROM current_user;'
@@ -15,6 +16,15 @@ def current_user():
     return username[0]
 
 def log_in(user_name,password):
+    '''Logs the user in if they exist in the user db
+
+    Parameters:
+        user_name: (str) a username mapped to a single user
+        password: (str) a password belonging to the user
+
+    Returns:
+        (bool) a boolean that represents whether or not the user exists in the user db
+    '''
     connection = sqlite3.connect('trade_information.db',check_same_thread=False)
     cursor = connection.cursor()
     query = 'SELECT count(*) FROM user WHERE username = "{}" AND password = "{}";'.format(user_name, password)
@@ -55,7 +65,6 @@ def create_(new_user,new_password,new_fund):
     connection.close()
 
 def update_holdings():
-    username = current_user()
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
     query = 'DELETE FROM holdings WHERE num_shares = 0.0'
@@ -96,7 +105,7 @@ def sell(username, ticker_symbol, trade_volume):
     #if yes return new balance = current balance - transaction cost
 
 def sell_db(return_list):
-# return_list = (last_price, brokerage_fee, current_balance, trade_volume, agg_balance, username, ticker_symbol, current_number_shares)
+    # return_list = (last_price, brokerage_fee, current_balance, trade_volume, agg_balance, username, ticker_symbol, current_number_shares)
     #check if user holds enough stock
     #update user's balance
     #insert transaction
@@ -105,8 +114,8 @@ def sell_db(return_list):
     connection = sqlite3.connect(database,check_same_thread = False)
     cursor = connection.cursor()
     last_price = return_list[0]
-    brokerage_fee = return_list[1]
-    current_balance = return_list[2]
+    # brokerage_fee = return_list[1]
+    # current_balance = return_list[2]
     trade_volume = return_list[3]
     agg_balance = return_list[4]
     username = current_user()
@@ -149,8 +158,6 @@ def sell_db(return_list):
     connection.close()
 
 def buy(username, ticker_symbol, trade_volume):
-    connection = sqlite3.connect('trade_information.db',check_same_thread=False)
-    cursor = connection.cursor()
     #we need to return True or False for the confirmation message
     trade_volume = float(trade_volume)
     last_price = float(quote_last_price(ticker_symbol))
@@ -175,8 +182,8 @@ def buy_db(return_list): # return_list = (last_price, brokerage_fee, current_bal
     connection = sqlite3.connect(database,check_same_thread = False)
     cursor = connection.cursor()
     last_price = return_list[0]
-    brokerage_fee = return_list[1]
-    current_balance = return_list[2]
+    # brokerage_fee = return_list[1]
+    # current_balance = return_list[2]
     trade_volume = return_list[3]
     left_over = return_list[4]
     username = return_list[5]
@@ -241,22 +248,19 @@ def get_user_balance(username):
     connection.close()
     return fetched_result[0] #cursor.fetchone() returns tuples
 
-def calculate_balance(ticker_symbol, trade_volume):
-    connection = sqlite3.connect('trade_information.db',check_same_thread=False)
-    cursor = connection.cursor()
-    database = 'trade_information.db'
+# def calculate_balance(ticker_symbol, trade_volume):
+#     connection = sqlite3.connect('trade_information.db',check_same_thread=False)
+#     cursor = connection.cursor()
+#     database = 'trade_information.db'
 
-    #current_balance = 1000.0 #TODO un-hardcode this value
-    last_price = float(quote_last_price(ticker_symbol))
-    brokerage_fee = 6.95 #TODO un-hardcode this value
-    transaction_cost = (trade_volume * last_price) + brokerage_fee
-    new_balance = current_balance - transaction_cost
-    return new_balance
+#     #current_balance = 1000.0 #TODO un-hardcode this value
+#     last_price = float(quote_last_price(ticker_symbol))
+#     brokerage_fee = 6.95 #TODO un-hardcode this value
+#     transaction_cost = (trade_volume * last_price) + brokerage_fee
+#     new_balance = current_balance - transaction_cost
+#     return new_balance
 
 def lookup_ticker_symbol(company_name):
-    connection = sqlite3.connect('trade_information.db',check_same_thread=False)
-    cursor = connection.cursor()
-    database = 'trade_information.db'
     endpoint = 'http://dev.markitondemand.com/MODApis/Api/v2/Lookup/json?input='+company_name
     #FIXME The following return statement assumes that only one
     #ticker symbol will be matched with the user's input.
@@ -264,13 +268,10 @@ def lookup_ticker_symbol(company_name):
     return json.loads(requests.get(endpoint).text)[0]['Symbol']
 
 def quote_last_price(ticker_symbol):
-    connection = sqlite3.connect('trade_information.db',check_same_thread=False)
-    cursor = connection.cursor()
-
     endpoint = 'http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol='+ticker_symbol
     return json.loads(requests.get(endpoint).text)['LastPrice']
 
-def calculate_p_and_l():
+'''def calculate_p_and_l():
     username = current_user()
     connection = sqlite3.connect('trade_information.db',check_same_thread=False)
     cursor = connection.cursor()
@@ -311,7 +312,7 @@ def calculate_p_and_l():
                 price += shares * purchase_price
     p_and_l += price/total_shares
     return p_and_l
-
+'''
 
 def display_user_holdings():
     username=current_user()
@@ -353,7 +354,7 @@ def get_tkr_symb_from_holdings():
     connection.close()
     return symbols_list
 
-def leaderboard():
+'''def leaderboard():
     connection = sqlite3.connect('trade_information.db',check_same_thread=False)
     cursor = connection.cursor()
     usernames = get_users_with_holdings()
@@ -370,6 +371,7 @@ def leaderboard():
     connection.commit()
     cursor.close()
     connection.close()
+'''
 
 def update_leaderboard():
     connection = sqlite3.connect('trade_information.db',check_same_thread=False)
@@ -425,9 +427,3 @@ def log_out():
     connection.commit()
     cursor.close()
     connection.close()
-
-
-if __name__ == '__main__':
-#    leaderboard()
-#    update_leaderboard()
-    pass
