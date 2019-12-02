@@ -13,6 +13,7 @@ def current_user():
     query = 'SELECT username FROM current_user;'
     cursor.execute(query)
     username = cursor.fetchone()
+
     return username[0]
 
 def log_in(user_name,password):
@@ -30,21 +31,23 @@ def log_in(user_name,password):
     query = 'SELECT count(*) FROM user WHERE username = "{}" AND password = "{}";'.format(user_name, password)
     cursor.execute(query)
     result_tuple = cursor.fetchone()
+
     if result_tuple[0] == 0:
         return False
     elif result_tuple[0] == 1:
-        cursor.execute("""
-            UPDATE current_user SET username = '{}' WHERE pk = 1;""".format(user_name))
+        cursor.execute("UPDATE current_user SET username = '{}' WHERE pk = 1;".format(user_name))
         connection.commit()
         return True
     else:
         pass
+
     cursor.close()
     connection.close()
 
 def create_(new_user,new_password,new_fund):
     connection = sqlite3.connect('trade_information.db',check_same_thread=False)
     cursor = connection.cursor()
+
     try:
         cursor.execute(
             """INSERT INTO user(
@@ -61,6 +64,7 @@ def create_(new_user,new_password,new_fund):
         return True
     except:
         return False
+
     cursor.close()
     connection.close()
 
@@ -86,6 +90,7 @@ def sell(username, ticker_symbol, trade_volume):
     query = 'SELECT count(*), num_shares FROM holdings WHERE username = "{}" AND ticker_symbol = "{}"'.format(username, ticker_symbol)
     cursor.execute(query)
     fetch_result = cursor.fetchone()
+
     if fetch_result[0] == 0:
         current_number_shares = 0
     else:
@@ -121,6 +126,7 @@ def sell_db(return_list):
     username = current_user()
     ticker_symbol = return_list[6]
     current_number_shares = return_list[7]
+
     now = datetime.datetime.now()
     date = now.strftime("%Y-%m-%d %I:%M %p")
 
@@ -131,6 +137,7 @@ def sell_db(return_list):
         WHERE username = '{}';
     """.format(agg_balance, username)
     )
+
     #transactions
     cursor.execute("""
         INSERT INTO transactions(
@@ -143,6 +150,7 @@ def sell_db(return_list):
         '{}',{},'{}',{}, '{}'
         );""".format(ticker_symbol, trade_volume*-1, username, last_price, date)
     )
+
     #holdings
     #at this point, it it assumed that the user has enough shares to sell.
     if current_number_shares >= trade_volume: #if user isn't selling all shares of a specific company
@@ -153,6 +161,7 @@ def sell_db(return_list):
             WHERE username = "{}" AND ticker_symbol = "{}";
         '''.format(tot_shares, last_price, username, ticker_symbol)
         )
+
     connection.commit()
     cursor.close()
     connection.close()
