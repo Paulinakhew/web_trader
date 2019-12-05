@@ -3,9 +3,7 @@
 import json
 import sqlite3
 import requests
-import pandas as pd
 import datetime
-import pytest
 
 from unittest.mock import MagicMock  # this will be used after modularization
 
