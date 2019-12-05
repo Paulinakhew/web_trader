@@ -100,9 +100,9 @@ def sell(username, ticker_symbol, trade_volume):
         current_number_shares = fetch_result[1]
 
     last_price = float(quote_last_price(ticker_symbol))
-    brokerage_fee = 6.95 #TODO un-hardcode this value
-    current_balance = get_user_balance(username) #TODO un-hardcode this value
-    transaction_revenue = (trade_volume * last_price) - brokerage_fee
+    brokerage_fee = 6.95  #TODO: un-hardcode this value
+    current_balance = get_user_balance(username)
+    transaction_revenue = calculate_transaction_revenue(trade_volume, last_price, brokerage_fee)
     agg_balance = float(current_balance) + float(transaction_revenue)
     return_list = (last_price, brokerage_fee, current_balance, trade_volume,agg_balance,username,ticker_symbol,current_number_shares)
 
@@ -111,6 +111,11 @@ def sell(username, ticker_symbol, trade_volume):
     else:
         return False, return_list
     #if yes return new balance = current balance - transaction cost
+
+def calculate_transaction_revenue(trade_volume, last_price, brokerage_fee):
+    transaction_revenue = (trade_volume * last_price) - brokerage_fee
+
+    return transaction_revenue
 
 def sell_db(return_list):
     # return_list = (last_price, brokerage_fee, current_balance, trade_volume, agg_balance, username, ticker_symbol, current_number_shares)
@@ -173,11 +178,10 @@ def buy(username, ticker_symbol, trade_volume):
     #we need to return True or False for the confirmation message
     trade_volume = float(trade_volume)
     last_price = float(quote_last_price(ticker_symbol))
-    brokerage_fee = 6.95 #TODO un-hardcode this value
+    brokerage_fee = 6.95 #TODO: un-hardcode this value
     username = current_user()
     current_balance = get_user_balance(username)
-    #TODO: un-hardcode this value
-    transaction_cost = (trade_volume * last_price) + brokerage_fee
+    transaction_cost = calculate_transaction_cost(trade_volume, last_price, brokerage_fee)
     left_over = float(current_balance) - float(transaction_cost)
     return_list = (last_price, brokerage_fee, current_balance, trade_volume,left_over,username,ticker_symbol)
     if transaction_cost <= current_balance:
@@ -185,6 +189,11 @@ def buy(username, ticker_symbol, trade_volume):
     else:
         return False, return_list
     #if yes return new balance = current balance - transaction cost
+
+def calculate_transaction_cost(trade_volume, last_price, brokerage_fee):
+    transaction_cost = (trade_volume * last_price) + brokerage_fee
+
+    return transaction_cost
 
 def buy_db(return_list): # return_list = (last_price, brokerage_fee, current_balance, trade_volume, left_over, username, ticker_symbol)
     connection = sqlite3.connect('trade_information.db',check_same_thread=False)
@@ -347,3 +356,9 @@ def log_out():
     connection.commit()
     cursor.close()
     connection.close()
+
+def test_calculate_transaction_cost():
+    assert calculate_transaction_cost(1, 50, 7) == 57
+
+def test_calculate_transaction_revenue():
+    assert calculate_transaction_revenue(1, 50, 7) == 43
