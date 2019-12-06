@@ -4,6 +4,7 @@ import json
 import sqlite3
 import requests
 import datetime
+import pytest
 
 # from unittest.mock import MagicMock  # this will be used after modularization
 
@@ -385,9 +386,5 @@ def log_out():
     connection.close()
 
 
-def test_calculate_transaction_cost():
-    assert calculate_transaction_cost(1, 50, 7) == 57
-
-
-def test_calculate_transaction_revenue():
-    assert calculate_transaction_revenue(1, 50, 7) == 43
+def f():
+    raise SystemExit(1)
