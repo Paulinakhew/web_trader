@@ -2,7 +2,7 @@ class Transaction():
     '''Class to store information about a single transaction'''
     def __init__(
         self,
-        user,
+        username,
         last_price,
         brokerage_fee,
         current_balance,
@@ -10,7 +10,7 @@ class Transaction():
         left_over,
         ticker_symbol,
     ):
-        self.user = user
+        self.username = username
         self.last_price = last_price
         self.brokerage_fee = brokerage_fee
         self.current_balance = current_balance

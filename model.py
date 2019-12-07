@@ -6,6 +6,7 @@ import requests
 import datetime
 import pytest
 
+from Transaction import Transaction
 # from unittest.mock import MagicMock  # this will be used after modularization
 
 
@@ -190,6 +191,8 @@ def buy(username, ticker_symbol, trade_volume):
     current_balance = get_user_balance(username)
     transaction_cost = calculate_transaction_cost(trade_volume, last_price, brokerage_fee)
     left_over = float(current_balance) - float(transaction_cost)
+    transaction = Transaction(username, last_price, brokerage_fee, current_balance, trade_volume, left_over, ticker_symbol)
+    print(transaction)
     return_list = (last_price, brokerage_fee, current_balance, trade_volume, left_over, username, ticker_symbol)
     if transaction_cost <= current_balance:
         return True, return_list  # success
