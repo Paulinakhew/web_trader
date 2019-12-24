@@ -1,6 +1,5 @@
 import pytest
 import model as m
-import Transaction
 
 
 def test_calculate_transaction_cost():
