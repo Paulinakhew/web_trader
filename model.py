@@ -67,7 +67,9 @@ def create_(new_user, new_password, new_fund):
         )
         connection.commit()
         return True
-    except:
+    except AssertionError as error:
+        print(error)
+        print('There was an error with creating a user.')
         return False
 
     cursor.close()
@@ -305,10 +307,13 @@ def get_user_balance(username):
 
 def lookup_ticker_symbol(company_name):
     try:
-        endpoint = f'https://api-v2.intrinio.com/companies/search?query={company_name}&api_key=OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
-        return json.loads(requests.get(endpoint).text)['companies'][0]['ticker']
-    except KeyError:
-        print("There was no company found.")
+        endpoint = f'https://api-v2.intrinio.com/companies/search?query={company_name}' + \
+            '&api_key=OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
+        ticker_symbol = json.loads(requests.get(endpoint).text)['companies'][0]['ticker']
+        assert ticker_symbol
+        return ticker_symbol
+    except IndexError:
+        raise Exception('There was no company found.')
 
 
 def quote_last_price(ticker_symbol):
