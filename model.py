@@ -304,11 +304,11 @@ def get_user_balance(username):
 
 
 def lookup_ticker_symbol(company_name):
-    endpoint = 'http://dev.markitondemand.com/MODApis/Api/v2/Lookup/json?input='+company_name
-    # FIXME: The following return statement assumes that only one
-    # ticker symbol will be matched with the user's input.
-    # FIXME: There also isn't any error handling.
-    return json.loads(requests.get(endpoint).text)[0]['Symbol']
+    try:
+        endpoint = f'https://api-v2.intrinio.com/companies/search?query={company_name}&api_key=OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
+        return json.loads(requests.get(endpoint).text)['companies'][0]['ticker']
+    except KeyError:
+        print("There was no company found.")
 
 
 def quote_last_price(ticker_symbol):
