@@ -8,7 +8,7 @@ import datetime
 from Transaction import Transaction
 # from unittest.mock import MagicMock  # this will be used after modularization
 
-
+api_key = 'OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
 def current_user():
     '''Selects the username of the current user from the current_user db'''
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
@@ -307,8 +307,11 @@ def get_user_balance(username):
 
 def lookup_ticker_symbol(company_name):
     try:
-        endpoint = f'https://api-v2.intrinio.com/companies/search?query={company_name}&' + \
-            'api_key=OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
+        endpoint = (
+            f'https://api-v2.intrinio.com/companies/search?query={company_name}&'
+            f'api_key={api_key}'
+        )
+
         ticker_symbol = json.loads(requests.get(endpoint).text)['companies'][0]['ticker']
         assert ticker_symbol
         return ticker_symbol
@@ -318,8 +321,11 @@ def lookup_ticker_symbol(company_name):
 
 def quote_last_price(ticker_symbol):
     try:
-        endpoint = f'https://api-v2.intrinio.com/securities/{ticker_symbol}/prices/realtime?' + \
-            'api_key=OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
+        endpoint = (
+            f'https://api-v2.intrinio.com/securities/{ticker_symbol}/prices/realtime?'
+            f'api_key={api_key}'
+        )
+
         last_price = json.loads(requests.get(endpoint).text)['last_price']
         assert last_price
         return last_price
@@ -411,7 +417,7 @@ def log_out():
             '{}'
         );""".format(
             'randomuser'
-            )
+        )
     )
     connection.commit()
     cursor.close()

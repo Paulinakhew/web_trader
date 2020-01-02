@@ -162,6 +162,7 @@ def search():
     elif request.method == "POST":
         try:
             submitted_company_name = request.form['company_name']
+            submitted_company_name = submitted_company_name.capitalize()
             ticker_symboll = m.lookup_ticker_symbol(submitted_company_name)
             result = "The ticker symbol for {} is {}.".format(
                 submitted_company_name,
