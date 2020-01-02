@@ -9,6 +9,8 @@ from Transaction import Transaction
 # from unittest.mock import MagicMock  # this will be used after modularization
 
 api_key = 'OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
+
+
 def current_user():
     '''Selects the username of the current user from the current_user db'''
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
@@ -32,14 +34,14 @@ def log_in(user_name, password):
     '''
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
-    query = 'SELECT count(*) FROM user WHERE username = "{}" AND password = "{}";'.format(user_name, password)
+    query = f"SELECT count(*) FROM user WHERE username = '{user_name}' AND password = '{password}';"
     cursor.execute(query)
     result_tuple = cursor.fetchone()
 
     if result_tuple[0] == 0:
         return False
     elif result_tuple[0] == 1:
-        cursor.execute("UPDATE current_user SET username = '{}' WHERE pk = 1;".format(user_name))
+        cursor.execute(f"UPDATE current_user SET username = '{user_name}' WHERE pk = 1;")
         connection.commit()
         return True
     else:
@@ -55,15 +57,15 @@ def create_(new_user, new_password, new_fund):
 
     try:
         cursor.execute(
-            """INSERT INTO user(
+            f"""INSERT INTO user(
                 username,
                 password,
                 current_balance
                 ) VALUES(
-                "{}",
-                "{}",
-                {}
-            );""".format(new_user, new_password, new_fund)
+                "{new_user}",
+                "{new_password}",
+                {new_fund}
+            );"""
         )
         connection.commit()
         return True
@@ -96,10 +98,7 @@ def sell(username, ticker_symbol, trade_volume):
     database = 'trade_information.db'
     connection = sqlite3.connect(database, check_same_thread=False)
     cursor = connection.cursor()
-    query = 'SELECT count(*), num_shares FROM holdings WHERE username = "{}" AND ticker_symbol = "{}"'.format(
-        username,
-        ticker_symbol
-    )
+    query = f"SELECT count(*), num_shares FROM holdings WHERE username = '{username}' AND ticker_symbol = '{ticker_symbol}'"
     cursor.execute(query)
     fetch_result = cursor.fetchone()
 
@@ -158,35 +157,33 @@ def sell_db(return_list):
     date = now.strftime("%Y-%m-%d %I:%M %p")
 
     # user
-    cursor.execute("""
-        UPDATE user
-        SET current_balance = {}
-        WHERE username = '{}';
-    """.format(agg_balance, username)
+    cursor.execute(
+        f"""UPDATE user
+        SET current_balance = {agg_balance}
+        WHERE username = '{username}';"""
     )
 
     # transactions
     cursor.execute(
-        """INSERT INTO transactions(
+        f"""INSERT INTO transactions(
         ticker_symbol,
         num_shares,
         owner_username,
         last_price,
         date
         ) VALUES(
-        '{}',{},'{}',{}, '{}'
-        );""".format(ticker_symbol, trade_volume*-1, username, last_price, date)
+        '{ticker_symbol}',{trade_volume*-1},'{username}',{last_price}, '{date}'
+        );"""
     )
 
     # holdings
     # at this point, it it assumed that the user has enough shares to sell.
     if current_number_shares >= trade_volume:  # if user isn't selling all shares of a specific company
         tot_shares = float(current_number_shares)-float(trade_volume)
-        cursor.execute('''
-            UPDATE holdings
-            SET num_shares = {}, last_price = {}
-            WHERE username = "{}" AND ticker_symbol = "{}";
-        '''.format(tot_shares, last_price, username, ticker_symbol)
+        cursor.execute(
+            f'''UPDATE holdings
+            SET num_shares = {tot_shares}, last_price = {last_price}
+            WHERE username = "{username}" AND ticker_symbol = "{ticker_symbol}";'''
         )
 
     connection.commit()
@@ -240,53 +237,47 @@ def buy_db(return_list):
     # update users(current_balance), stocks, holdings.
     # users
     # updating the balance of the user
-    cursor.execute("""
-        UPDATE user
-        SET current_balance = {}
-        WHERE username = '{}';
-    """.format(left_over, username)
+    cursor.execute(
+        f"""UPDATE user
+        SET current_balance = {left_over}
+        WHERE username = '{username}';"""
     )
     # transactions
-    cursor.execute("""
-        INSERT INTO transactions(
-        ticker_symbol,
-        num_shares,
-        owner_username,
-        last_price,
-        date
-        ) VALUES(
-        '{}',{},'{}',{},'{}'
-        );""".format(
+    cursor.execute(
+        f"""INSERT INTO transactions(
             ticker_symbol,
-            trade_volume,
-            username,
+            num_shares,
+            owner_username,
             last_price,
             date
-        )
+        ) VALUES(
+            '{ticker_symbol}',{trade_volume},'{username}',{last_price},'{date}'
+        );"""
     )
 
     # inserting information
     # holdings
-    query = 'SELECT count(*), num_shares FROM holdings WHERE username = "{}" AND ticker_symbol = "{}"'.format(
-        username,
-        ticker_symbol
-    )
+    query = f'SELECT count(*), num_shares FROM holdings WHERE username = "{username}" AND ticker_symbol = "{ticker_symbol}"'
     cursor.execute(query)
     fetch_result = cursor.fetchone()
     if fetch_result[0] == 0:  # if the user didn't own the specific stock
         cursor.execute(
-            '''INSERT INTO holdings(last_price, num_shares, ticker_symbol, username)
-            VALUES (
-                {},{},"{}","{}"
-            );'''.format(last_price, trade_volume, ticker_symbol, username)
+            f'''INSERT INTO holdings(
+                last_price,
+                num_shares,
+                ticker_symbol,
+                username
+            ) VALUES (
+                {last_price},{trade_volume},"{ticker_symbol}","{username}"
+            );'''
         )
     else:  # if the user already has the same stock
         tot_shares = float(fetch_result[1])+float(trade_volume)
-        cursor.execute('''
-            UPDATE holdings
-            SET num_shares = {}, last_price = {}
-            WHERE username = "{}" AND ticker_symbol = "{}";
-        '''.format(tot_shares, last_price, username, ticker_symbol)
+        cursor.execute(
+            f'''UPDATE holdings
+            SET num_shares = {tot_shares}, last_price = {last_price}
+            WHERE username = "{username}" AND ticker_symbol = "{ticker_symbol}";
+            '''
         )
     connection.commit()
     cursor.close()
@@ -297,7 +288,7 @@ def get_user_balance(username):
     username = current_user()
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
-    query = 'SELECT current_balance FROM user WHERE username = "{}";'.format(username)
+    query = f"SELECT current_balance FROM user WHERE username = '{username}';"
     cursor.execute(query)
     fetched_result = cursor.fetchone()
     cursor.close()
@@ -331,7 +322,7 @@ def display_user_holdings():
     username = current_user()
     connection = sqlite3.connect("trade_information.db", check_same_thread=False)
     cursor = connection.cursor()
-    cursor.execute("SELECT ticker_symbol,num_shares,last_price FROM holdings WHERE username='{}';".format(username))
+    cursor.execute(f"SELECT ticker_symbol,num_shares,last_price FROM holdings WHERE username='{username}';")
     user_holdings = cursor.fetchall()
     cursor.close()
     connection.close()
@@ -342,9 +333,7 @@ def display_user_transactions():
     username = current_user()
     connection = sqlite3.connect("trade_information.db", check_same_thread=False)
     cursor = connection.cursor()
-    cursor.execute(
-        "SELECT ticker_symbol,num_shares,last_price,date FROM transactions WHERE owner_username='{}';".format(username)
-    )
+    cursor.execute(f"SELECT ticker_symbol,num_shares,last_price,date FROM transactions WHERE owner_username='{username}';")
     user_transactions = cursor.fetchall()
     cursor.close()
     connection.close()
@@ -378,20 +367,21 @@ def update_leaderboard():
     cursor = connection.cursor()
     username = get_users_with_holdings()
     for user in username:
-        ticker_symbol = cursor.execute('SELECT ticker_symbol FROM holdings WHERE username="{}"'.format(user))
+        ticker_symbol = cursor.execute(f"SELECT ticker_symbol FROM holdings WHERE username='{user}'")
         mkt_val = cursor.execute(
-            """SELECT (num_shares*last_price)
+            f"""SELECT (num_shares*last_price)
             FROM transactions
-            WHERE owner_username = '{}'
-            AND ticker_symbol = '{}';
-            """.format(user, ticker_symbol)
+            WHERE owner_username = '{user}'
+            AND ticker_symbol = '{ticker_symbol}';
+            """
         )
+
         cursor.execute(
-            """UPDATE leaderboard
-            SET p_and_l={}
+            f"""UPDATE leaderboard
+            SET p_and_l={mkt_val}
             WHERE
-            username='{}'
-            );""".format(mkt_val, username)
+            username='{username}'
+            );"""
         )
     connection.commit()
     cursor.close()
@@ -406,12 +396,10 @@ def log_out():
         """REPLACE INTO current_user(
             pk,
             username
-        ) VALUES(
+        ) VALUES (
             1,
-            '{}'
-        );""".format(
-            'randomuser'
-        )
+            'randomuser');
+        """
     )
     connection.commit()
     cursor.close()
