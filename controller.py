@@ -100,7 +100,7 @@ def trade():
             return render_template('trade.html')
     elif request.method == "POST":
         try:
-            submitted_symbol = request.form['ticker_symbol']
+            submitted_symbol = request.form['ticker_symbol'].upper()
             submitted_volume = request.form['number_of_shares']
             submitted_volume = int(submitted_volume)
             confirmation_message, return_list = m.buy(
@@ -125,7 +125,7 @@ def trade():
             else:
                 return render_template('trade.html')
         except:
-            submitted_symbols = request.form['ticker_symb']
+            submitted_symbols = request.form['ticker_symb'].upper()
             submitted_volumes = request.form['number_shares']
             submitted_volumes = int(submitted_volumes)
             confirmation_message, return_list = m.sell(
