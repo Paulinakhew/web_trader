@@ -317,8 +317,14 @@ def lookup_ticker_symbol(company_name):
 
 
 def quote_last_price(ticker_symbol):
-    endpoint = 'http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol='+ticker_symbol
-    return json.loads(requests.get(endpoint).text)['LastPrice']
+    try:
+        endpoint = f'https://api-v2.intrinio.com/securities/{ticker_symbol}/prices/realtime?' + \
+            'api_key=OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
+        last_price = json.loads(requests.get(endpoint).text)
+        assert last_price
+        return last_price
+    except IndexError:
+        raise Exception('There was no last price found.')
 
 
 def display_user_holdings():
