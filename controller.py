@@ -170,6 +170,7 @@ def search():
             return render_template('search.html', resultthree=result)
         except:
             submitted_symbol = request.form['ticker_symbol']
+            submitted_symbol = submitted_symbol.upper()
             price = m.quote_last_price(submitted_symbol)
             results = "The last price of {} is ${}.".format(
                 submitted_symbol,

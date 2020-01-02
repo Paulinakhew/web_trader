@@ -307,8 +307,8 @@ def get_user_balance(username):
 
 def lookup_ticker_symbol(company_name):
     try:
-        endpoint = f'https://api-v2.intrinio.com/companies/search?query={company_name}' + \
-            '&api_key=OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
+        endpoint = f'https://api-v2.intrinio.com/companies/search?query={company_name}&' + \
+            'api_key=OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
         ticker_symbol = json.loads(requests.get(endpoint).text)['companies'][0]['ticker']
         assert ticker_symbol
         return ticker_symbol
@@ -320,7 +320,7 @@ def quote_last_price(ticker_symbol):
     try:
         endpoint = f'https://api-v2.intrinio.com/securities/{ticker_symbol}/prices/realtime?' + \
             'api_key=OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
-        last_price = json.loads(requests.get(endpoint).text)
+        last_price = json.loads(requests.get(endpoint).text)['last_price']
         assert last_price
         return last_price
     except IndexError:
