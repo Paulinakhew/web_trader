@@ -8,7 +8,8 @@ import datetime
 from Transaction import Transaction
 # from unittest.mock import MagicMock  # this will be used after modularization
 
-api_key = 'OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'
+api_key = 'OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'  # NOTE: this API key has been revoked
+# after cloning the repository, generate your own free API key and replace this with your own
 
 
 def current_user():
