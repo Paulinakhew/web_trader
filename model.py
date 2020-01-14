@@ -1,5 +1,7 @@
 #!/usr/bin/env
 
+import os
+from dotenv import load_dotenv
 import json
 import sqlite3
 import requests
@@ -8,9 +10,10 @@ import datetime
 from Transaction import Transaction
 # from unittest.mock import MagicMock  # this will be used after modularization
 
-api_key = 'OmZiNmY3MzI2OTZhMmRjNzdiYWFjNjQ3YTRkYWNkOWJi'  # NOTE: this API key has been revoked
-# after cloning the repository, generate your own free API key and replace this with your own
+project_folder = os.path.expanduser('.')
+load_dotenv(os.path.join(project_folder, '.env'))
 
+api_key = os.getenv("API_KEY")
 
 def current_user():
     '''Selects the username of the current user from the current_user db'''
