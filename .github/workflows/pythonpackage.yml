@@ -3,7 +3,7 @@ name: Python package
 on: [push, pull_request]
 
 env: 
-    API_KEY: OmJlZDg3OGVmNmNlMDZmNGVkYzY4NWU5OGYwNWZjMDQz
+    API_KEY: ${{ secrets.API_KEY }}
 
 jobs:
   build:
