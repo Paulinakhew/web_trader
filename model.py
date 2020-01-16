@@ -8,12 +8,12 @@ import requests
 import datetime
 
 from Transaction import Transaction
-# from unittest.mock import MagicMock  # this will be used after modularization
 
 project_folder = os.path.expanduser('.')
 load_dotenv(os.path.join(project_folder, '.env'))
 
 api_key = os.getenv("API_KEY")
+
 
 def current_user():
     '''Selects the username of the current user from the current_user db'''
@@ -93,11 +93,16 @@ def update_holdings():
 
 
 def sell(username, ticker_symbol, trade_volume):
-    # we have to search for how many of the stock we have
-    # compare trade volume with how much stock we have
-    # if trade_volume <= our stock, proceed
-    # else return to menu
-    # we need a database to save how much money we have and how much stock
+    '''Sells the stock if the user has enough
+
+    Search for how many of the stock the user has and sells them if the trade volume is less than the stock.
+    If the trade volume is greater than the stock, return to menu.
+
+    Params:
+        username: (str) username of current user from db
+        ticker_symbol: (str) ticker symbol of stock that is going to be sold
+        trade_volume: (float) the number of stocks the user wants to sell
+    '''
     username = current_user()
     database = 'trade_information.db'
     connection = sqlite3.connect(database, check_same_thread=False)
