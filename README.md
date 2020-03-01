@@ -22,12 +22,18 @@ $ pip install -r requirements.txt
 - Create the sqlite3 database:
 ```ShellSession
 $ python3 schema.py
+```
+
+- Seed the database:
+```ShellSession
 $ python3 seed.py
 ```
+
 - Run the app locally:
 ```ShellSession
 $ python3 controller.py
 ```
+
 - Paste http://127.0.0.1:5000 into your web browser and have fun! 🤩
 
 ## Example Photos
@@ -35,7 +41,7 @@ $ python3 controller.py
 ![Login menu](static/login.png?raw=true "Login menu")
 
 **This is the main menu that opens after you log in.**
-![Login menu](static/main_menu.png?raw=true "Main menu")
+![Main menu](static/main_menu.png?raw=true "Main menu")
 
 **The dashboard is where you can see all of your previous transactions as well as current holdings.**
 ![Dashboard](static/dashboard.png?raw=true "Dashboard")
@@ -56,6 +62,9 @@ CREATE TABLE transactions(
     FOREIGN KEY(owner_username) REFERENCES user(username)
 );
 ```
+
+### Testing
+I use GitHub actions and Pytest to test the project. You can see the tests [here](test_model.py). I also have the API Key for the Intrinio API set up as a Secret. Secrets are environment variables that are encrypted and only exposed to selected actions. Anyone with collaborator access to this repository can use these secrets in a workflow.
 
 ### New Features :sparkles:
 Feel free to create a GitHub issue for this repository if you have any new ideas!
