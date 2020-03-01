@@ -73,8 +73,7 @@ def create_(new_user, new_password, new_fund):
         )
         connection.commit()
         return True
-    except AssertionError as error:
-        print(error)
+    except:
         print('There was an error with creating a user.')
         return False
 
