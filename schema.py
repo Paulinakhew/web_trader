@@ -9,6 +9,8 @@ cursor.execute(
     """CREATE TABLE user(
         username TXT PRIMARY KEY,
         password VARCHAR,
+        salt VARBINARY(1024),
+        key VARBINARY(1024),
         current_balance FLOAT
     );"""
 )
