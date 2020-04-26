@@ -1,6 +1,6 @@
 #!/usr/bin/env
 
-import os
+import os, hashlib, binascii
 from dotenv import load_dotenv
 import json
 import sqlite3
@@ -38,18 +38,29 @@ def log_in(user_name, password):
     '''
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
-    query = f"SELECT count(*) FROM user WHERE username = '{user_name}' AND password = '{password}';"
+
+    query = f"SELECT salt, key FROM user WHERE username = '{user_name}';"
     cursor.execute(query)
     result_tuple = cursor.fetchone()
 
-    if result_tuple[0] == 0:
-        return False
-    elif result_tuple[0] == 1:
+    salt = result_tuple[0]
+    key = result_tuple[1]
+
+    pwdhash = hashlib.pbkdf2_hmac(
+        'sha512',
+        password.encode('utf-8'),
+        salt.encode('ascii'),
+        100000
+    )
+
+    pwdhash = binascii.hexlify(pwdhash).decode('ascii')
+
+    if key == pwdhash:
         cursor.execute(f"UPDATE current_user SET username = '{user_name}' WHERE pk = 1;")
         connection.commit()
         return True
     else:
-        pass
+        return False
 
     cursor.close()
     connection.close()
@@ -59,15 +70,21 @@ def create_(new_user, new_password, new_fund):
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
 
+    salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
+    pwdhash = hashlib.pbkdf2_hmac('sha512', new_password.encode('utf-8'), salt, 100000)
+    pwdhash = binascii.hexlify(pwdhash)
+
     try:
         cursor.execute(
             f"""INSERT INTO user(
                 username,
-                password,
+                salt,
+                key,
                 current_balance
                 ) VALUES(
                 "{new_user}",
-                "{new_password}",
+                "{salt.decode('ascii')}",
+                "{pwdhash.decode('ascii')}",
                 {new_fund}
             );"""
         )
