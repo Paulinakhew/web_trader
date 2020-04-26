@@ -1,5 +1,15 @@
 class Transaction():
-    '''Class to store information about a single transaction'''
+    '''Class to store information about a single transaction
+
+    Parameters:
+        username (str): the username of the user performing the transaction
+        last_price (float): a float representing the last opened price of the stock
+        brokerage_fee (float): the fee for performing a transaction
+        current_balance (float): the user's current balance
+        trade_volume (int): the amount of stock the user intends to purchase/sell
+        new_balance (float): the balance after the transaction is executed
+        ticker_symbol (str): a string representing the ticker symbol of the stock
+    '''
     def __init__(
         self,
         username,
@@ -7,7 +17,7 @@ class Transaction():
         brokerage_fee,
         current_balance,
         trade_volume,
-        left_over,
+        new_balance,
         ticker_symbol,
     ):
         self.username = username
@@ -15,7 +25,7 @@ class Transaction():
         self.brokerage_fee = brokerage_fee
         self.current_balance = current_balance
         self.trade_volume = trade_volume
-        self.left_over = left_over
+        self.new_balance = new_balance
         self.ticker_symbol = ticker_symbol
 
     def __eq__(self, other):
