@@ -1,6 +1,8 @@
 #!/usr/bin/env
 
-import os, hashlib, binascii
+import os
+import hashlib
+import binascii
 from dotenv import load_dotenv
 import json
 import sqlite3
