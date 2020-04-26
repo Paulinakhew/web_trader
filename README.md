@@ -66,5 +66,17 @@ CREATE TABLE transactions(
 ### Testing
 I use GitHub actions and Pytest to test the project. You can see the tests [here](test_model.py). I also have the API Key for the Intrinio API set up as a Secret. Secrets are environment variables that are encrypted and only exposed to selected actions. Anyone with collaborator access to this repository can use these secrets in a workflow.
 
+### Security
+Instead of storing passwords as plaintext, I stored the salt and the hash of the password. When users try to log in, the hashed password is compared to the hash in the database. 
+
+```Python3
+pwdhash = hashlib.pbkdf2_hmac(
+    'sha512',
+    password.encode('utf-8'),
+    salt.encode('ascii'),
+    100000
+)
+```
+
 ### New Features :sparkles:
 Feel free to create a GitHub issue for this repository if you have any new ideas!
