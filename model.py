@@ -18,7 +18,11 @@ api_key = os.getenv("API_KEY")
 
 
 def current_user():
-    '''Selects the username of the current user from the current_user db'''
+    '''Selects the username of the current user from the current_user db
+
+    Returns:
+        username (str): the current user's username
+    '''
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
     query = 'SELECT username FROM current_user;'
@@ -69,6 +73,16 @@ def log_in(user_name, password):
 
 
 def create_(new_user, new_password, new_fund):
+    '''Adds a new user into the user database if the username is unique
+
+    Parameters:
+        new_user (str): a new username
+        new_password (str): new user's password that ends up being hashed
+        new_fund (float): the amount of money the user starts the game with
+
+    Returns:
+        boolean representing whether or not the user was successfully created and inserted into user db
+    '''
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
 
@@ -101,6 +115,7 @@ def create_(new_user, new_password, new_fund):
 
 
 def update_holdings():
+    '''Deletes records from holdings if the number of shares are equal to zero'''
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
     query = 'DELETE FROM holdings WHERE num_shares = 0.0'
@@ -111,7 +126,7 @@ def update_holdings():
 
 
 def sell(username, ticker_symbol, trade_volume):
-    '''Sells the stock if the user has enough
+    '''Sells the stock if the user has enough money
 
     Search for how many of the stock the user has and sells them if the trade volume is less than the stock.
     If the trade volume is greater than the stock, return to menu.
@@ -158,6 +173,16 @@ def sell(username, ticker_symbol, trade_volume):
 
 
 def calculate_transaction_revenue(trade_volume, last_price, brokerage_fee):
+    '''Calculates transaction revenue
+
+    Parameters:
+        trade_volume (float): the amount of stocks that the user wants to sell
+        last_price (float): the last price of the stock
+        brokerage_fee (float): price of the transaction
+
+    Returns:
+        transaction_revenue (float): the amount that that user earns from the transaction
+    '''
     transaction_revenue = (trade_volume * last_price) - brokerage_fee
 
     return transaction_revenue
