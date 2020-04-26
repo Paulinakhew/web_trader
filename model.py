@@ -42,7 +42,6 @@ def log_in(user_name, password):
     query = f"SELECT salt, key FROM user WHERE username = '{user_name}';"
     cursor.execute(query)
     result_tuple = cursor.fetchone()
-    print('this is result_tuple', result_tuple)
 
     salt = result_tuple[0]
     key = result_tuple[1]
@@ -55,7 +54,6 @@ def log_in(user_name, password):
     )
 
     pwdhash = binascii.hexlify(pwdhash).decode('ascii')
-    print(key, pwdhash)
 
     if key == pwdhash:
         cursor.execute(f"UPDATE current_user SET username = '{user_name}' WHERE pk = 1;")
