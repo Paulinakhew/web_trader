@@ -80,13 +80,11 @@ def create_(new_user, new_password, new_fund):
         cursor.execute(
             f"""INSERT INTO user(
                 username,
-                password,
                 salt,
                 key,
                 current_balance
                 ) VALUES(
                 "{new_user}",
-                "{new_password}",
                 "{salt.decode('ascii')}",
                 "{pwdhash.decode('ascii')}",
                 {new_fund}
