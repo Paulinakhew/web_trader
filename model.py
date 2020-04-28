@@ -40,7 +40,7 @@ def log_in(user_name, password):
         password: (str) a password belonging to the user
 
     Returns:
-        (bool) a boolean that represents whether or not the user exists in the user db
+        (bool) a boolean that represents whether or not the user was successfully logged in
     '''
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
@@ -290,9 +290,11 @@ def buy_db(return_list):
     # users
     # updating the balance of the user
     cursor.execute(
-        f"""UPDATE user
-        SET current_balance = {left_over}
-        WHERE username = '{username}';"""
+        f"""
+            UPDATE user
+            SET current_balance = {left_over}
+            WHERE username = '{username}';
+        """
     )
     # transactions
     cursor.execute(
@@ -303,7 +305,11 @@ def buy_db(return_list):
             last_price,
             date
         ) VALUES(
-            '{ticker_symbol}',{trade_volume},'{username}',{last_price},'{date}'
+            '{ticker_symbol}',
+            {trade_volume},
+            '{username}',
+            {last_price},
+            '{date}'
         );"""
     )
 
@@ -320,7 +326,10 @@ def buy_db(return_list):
                 ticker_symbol,
                 username
             ) VALUES (
-                {last_price},{trade_volume},"{ticker_symbol}","{username}"
+                {last_price},
+                {trade_volume},
+                "{ticker_symbol}",
+                "{username}"
             );'''
         )
     else:  # if the user already has the same stock
@@ -395,7 +404,7 @@ def display_user_transactions():
 def get_users_with_holdings():
     connection = sqlite3.connect("trade_information.db", check_same_thread=False)
     cursor = connection.cursor()
-    cursor.execute("SELECT username FROM holdings WHERE username NOT LIKE 'admin'")
+    cursor.execute("SELECT username FROM holdings WHERE username NOT LIKE 'admin';")
     users = list(cursor.fetchall())  # List of tuples
     users_list = [str(user) for user in users]  # List of strings
     cursor.close()
@@ -406,7 +415,7 @@ def get_users_with_holdings():
 def get_tkr_symb_from_holdings():
     connection = sqlite3.connect("trade_information.db", check_same_thread=False)
     cursor = connection.cursor()
-    cursor.execute("SELECT ticker_symbol FROM holdings WHERE username NOT LIKE 'admin'")
+    cursor.execute("SELECT ticker_symbol FROM holdings WHERE username NOT LIKE 'admin';")
     symbols = cursor.fetchall()  # List of tuples
     symbols_list = [str(sym[0]) for sym in symbols]  # List of strings
     cursor.close()
@@ -419,21 +428,28 @@ def update_leaderboard():
     cursor = connection.cursor()
     username = get_users_with_holdings()
     for user in username:
-        ticker_symbol = cursor.execute(f"SELECT ticker_symbol FROM holdings WHERE username='{user}'")
+        ticker_symbol = cursor.execute(
+            f"""
+                SELECT ticker_symbol
+                FROM holdings
+                WHERE username='{user}';
+            """
+        )
         mkt_val = cursor.execute(
-            f"""SELECT (num_shares*last_price)
-            FROM transactions
-            WHERE owner_username = '{user}'
-            AND ticker_symbol = '{ticker_symbol}';
+            f"""
+                SELECT (num_shares*last_price)
+                FROM transactions
+                WHERE owner_username = '{user}'
+                AND ticker_symbol = '{ticker_symbol}';
             """
         )
 
         cursor.execute(
-            f"""UPDATE leaderboard
-            SET p_and_l={mkt_val}
-            WHERE
-            username='{username}'
-            );"""
+            f"""
+                UPDATE leaderboard
+                SET p_and_l={mkt_val}
+                WHERE username='{username}';
+            """
         )
     connection.commit()
     cursor.close()
