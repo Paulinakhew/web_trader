@@ -46,6 +46,9 @@ $ python3 controller.py
 **The dashboard is where you can see all of your previous transactions as well as current holdings.**
 ![Dashboard](static/dashboard.png?raw=true "Dashboard")
 
+**This page lets the user lookup ticker symbols and the last prices of stocks.**
+![Lookup and Quote Menu](static/lookup_quote.png?raw=true "Lookup and Quote Menu")
+
 **The buy and sell menu lets the user input the ticker symbol and quantity of the stock that they want to purchase/sell.**
 ![Buy and Sell Menu](static/buy_sell.png?raw=true "Buy and Sell Menu")
 
