@@ -1,6 +1,6 @@
 import pytest
 import model as m
-
+from Transaction import Transaction
 
 def test_calculate_transaction_cost():
     assert m.calculate_transaction_cost(1, 50, 7) == 57
@@ -21,3 +21,27 @@ def test_lookup_ticker_symbol_success():
 
 def test_lookup_ticker_symbol_fail():
     assert Exception()
+
+
+def test_transaction_class():
+    t1 = Transaction(
+        'Paulina',
+        124.5,
+        10.50,
+        100000,
+        5,
+        m.calculate_transaction_cost(5, 124.5, 10.50),
+        'AAPL'
+    )
+
+    t2 = Transaction(
+        'Paulina',
+        124.5,
+        10.50,
+        100000,
+        5,
+        m.calculate_transaction_cost(5, 124.5, 10.50),
+        'AAPL'
+    )
+
+    assert t1 == t2
