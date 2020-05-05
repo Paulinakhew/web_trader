@@ -31,7 +31,8 @@ def test_transaction_class():
         100000,
         5,
         m.calculate_transaction_cost(5, 124.5, 10.50),
-        'AAPL'
+        'AAPL',
+        500.0
     )
 
     t2 = Transaction(
@@ -41,7 +42,8 @@ def test_transaction_class():
         100000,
         5,
         m.calculate_transaction_cost(5, 124.5, 10.50),
-        'AAPL'
+        'AAPL',
+        500.0
     )
 
     assert t1 == t2
