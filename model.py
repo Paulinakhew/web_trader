@@ -191,13 +191,14 @@ def sell(username, ticker_symbol, trade_volume):
     )
 
     transaction = Transaction(
-        last_price,
-        brokerage_fee,
-        current_balance,
-        trade_volume,
-        agg_balance,
-        username,
-        ticker_symbol
+        last_price=last_price,
+        brokerage_fee=brokerage_fee,
+        current_balance=current_balance,
+        trade_volume=trade_volume,
+        new_balance=agg_balance,
+        username=username,
+        ticker_symbol=ticker_symbol,
+        current_number_shares=current_number_shares
     )
 
     if current_number_shares >= trade_volume:
@@ -310,7 +311,16 @@ def buy(username, ticker_symbol, trade_volume):
 
     # TODO: remove this return_list
     return_list = (last_price, brokerage_fee, current_balance, trade_volume, left_over, username, ticker_symbol)
-    transaction = Transaction(last_price, brokerage_fee, current_balance, trade_volume, left_over, username, ticker_symbol)
+    transaction = Transaction(
+        last_price=last_price,
+        brokerage_fee=brokerage_fee,
+        current_balance=current_balance,
+        trade_volume=trade_volume,
+        new_balance=left_over,
+        username=username,
+        ticker_symbol=ticker_symbol,
+        current_number_shares=None
+    )
     if transaction_cost <= current_balance:
         return True, return_list
     else:
