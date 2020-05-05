@@ -177,6 +177,8 @@ def sell(username, ticker_symbol, trade_volume):
     current_balance = get_user_balance(username)
     transaction_revenue = calculate_transaction_revenue(trade_volume, last_price, brokerage_fee)
     agg_balance = float(current_balance) + float(transaction_revenue)
+
+    # TODO: remove this
     return_list = (
         last_price,
         brokerage_fee,
@@ -186,6 +188,16 @@ def sell(username, ticker_symbol, trade_volume):
         username,
         ticker_symbol,
         current_number_shares
+    )
+
+    transaction = Transaction(
+        last_price,
+        brokerage_fee,
+        current_balance,
+        trade_volume,
+        agg_balance,
+        username,
+        ticker_symbol
     )
 
     if current_number_shares >= trade_volume:
@@ -220,6 +232,8 @@ def sell_db(return_list):
     database = 'trade_information.db'
     connection = sqlite3.connect(database, check_same_thread=False)
     cursor = connection.cursor()
+
+    # TODO: break this up
     last_price = return_list[0]
     trade_volume = return_list[3]
     agg_balance = return_list[4]
@@ -293,9 +307,10 @@ def buy(username, ticker_symbol, trade_volume):
     current_balance = get_user_balance(username)
     transaction_cost = calculate_transaction_cost(trade_volume, last_price, brokerage_fee)
     left_over = float(current_balance) - float(transaction_cost)
-    transaction = Transaction(username, last_price, brokerage_fee, current_balance, trade_volume, left_over, ticker_symbol)
-    print(transaction)
+
+    # TODO: remove this return_list
     return_list = (last_price, brokerage_fee, current_balance, trade_volume, left_over, username, ticker_symbol)
+    transaction = Transaction(last_price, brokerage_fee, current_balance, trade_volume, left_over, username, ticker_symbol)
     if transaction_cost <= current_balance:
         return True, return_list
     else:
@@ -317,6 +332,8 @@ def buy_db(return_list):
     username = current_user()
     connection = sqlite3.connect(database, check_same_thread=False)
     cursor = connection.cursor()
+
+    # TODO: break this up using transaction class
     last_price = return_list[0]
     trade_volume = return_list[3]
     left_over = return_list[4]
