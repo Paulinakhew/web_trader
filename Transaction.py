@@ -9,6 +9,7 @@ class Transaction():
         trade_volume (int): the amount of stock the user intends to purchase/sell
         new_balance (float): the balance after the transaction is executed
         ticker_symbol (str): a string representing the ticker symbol of the stock
+        current_number_shares (float): the current number of shares the user owns
     '''
     def __init__(
         self,

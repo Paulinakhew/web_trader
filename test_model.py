@@ -2,6 +2,7 @@ import pytest
 import model as m
 from Transaction import Transaction
 
+
 def test_calculate_transaction_cost():
     assert m.calculate_transaction_cost(1, 50, 7) == 57
 
