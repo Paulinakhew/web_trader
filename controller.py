@@ -103,7 +103,7 @@ def trade():
             submitted_symbol = request.form['ticker_symbol'].upper()
             submitted_volume = request.form['number_of_shares']
             submitted_volume = int(submitted_volume)
-            confirmation_message, return_list = m.buy(
+            confirmation_message, transaction = m.buy(
                 username,
                 submitted_symbol,
                 submitted_volume
@@ -120,7 +120,7 @@ def trade():
                 )
             m.update_holdings()
             if confirmation_message:
-                m.buy_db(return_list)
+                m.buy_db(transaction)
                 return render_template('trade.html', result=result)
             else:
                 return render_template('trade.html')
@@ -128,7 +128,7 @@ def trade():
             submitted_symbols = request.form['ticker_symb'].upper()
             submitted_volumes = request.form['number_shares']
             submitted_volumes = int(submitted_volumes)
-            confirmation_message, return_list = m.sell(
+            confirmation_message, transaction = m.sell(
                 username,
                 submitted_symbols,
                 submitted_volumes
@@ -145,7 +145,7 @@ def trade():
                 )
             m.update_holdings()
             if confirmation_message:
-                m.sell_db(return_list)
+                m.sell_db(transaction)
                 return render_template('trade.html', results=results)
             else:
                 return render_template('trade.html', cannot_sell=True)

@@ -151,6 +151,10 @@ def sell(username, ticker_symbol, trade_volume):
         username: (str) username of current user from db
         ticker_symbol: (str) ticker symbol of stock that is going to be sold
         trade_volume: (float) the number of stocks the user wants to sell
+
+    Returns:
+        boolean that describes whether or not the transaction was successful
+        transaction: a instance of the Transaction class
     '''
     username = current_user()
     database = 'trade_information.db'
@@ -177,21 +181,21 @@ def sell(username, ticker_symbol, trade_volume):
     current_balance = get_user_balance(username)
     transaction_revenue = calculate_transaction_revenue(trade_volume, last_price, brokerage_fee)
     agg_balance = float(current_balance) + float(transaction_revenue)
-    return_list = (
-        last_price,
-        brokerage_fee,
-        current_balance,
-        trade_volume,
-        agg_balance,
-        username,
-        ticker_symbol,
-        current_number_shares
+
+    transaction = Transaction(
+        last_price=last_price,
+        brokerage_fee=brokerage_fee,
+        current_balance=current_balance,
+        trade_volume=trade_volume,
+        new_balance=agg_balance,
+        ticker_symbol=ticker_symbol,
+        current_number_shares=current_number_shares
     )
 
     if current_number_shares >= trade_volume:
-        return True, return_list
+        return True, transaction
     else:
-        return False, return_list
+        return False, transaction
     # if yes return new balance = current balance - transaction cost
 
 
@@ -211,21 +215,22 @@ def calculate_transaction_revenue(trade_volume, last_price, brokerage_fee):
     return transaction_revenue
 
 
-def sell_db(return_list):
+def sell_db(transaction):
     '''Updates the user's holdings and transactions once the user decides to sell the stock
 
     Params:
-        return_list (tuple): this list contains all of the information related to the transaction
+        transaction (Transaction class instance): contains all of the information related to the transaction
     '''
     database = 'trade_information.db'
     connection = sqlite3.connect(database, check_same_thread=False)
     cursor = connection.cursor()
-    last_price = return_list[0]
-    trade_volume = return_list[3]
-    agg_balance = return_list[4]
+
+    last_price = transaction.last_price
+    trade_volume = transaction.trade_volume
+    agg_balance = transaction.current_balance
     username = current_user()
-    ticker_symbol = return_list[6]
-    current_number_shares = return_list[7]
+    ticker_symbol = transaction.ticker_symbol
+    current_number_shares = transaction.current_number_shares
 
     now = datetime.datetime.now()
     date = now.strftime('%Y-%m-%d %I:%M %p')
@@ -293,13 +298,20 @@ def buy(username, ticker_symbol, trade_volume):
     current_balance = get_user_balance(username)
     transaction_cost = calculate_transaction_cost(trade_volume, last_price, brokerage_fee)
     left_over = float(current_balance) - float(transaction_cost)
-    transaction = Transaction(username, last_price, brokerage_fee, current_balance, trade_volume, left_over, ticker_symbol)
-    print(transaction)
-    return_list = (last_price, brokerage_fee, current_balance, trade_volume, left_over, username, ticker_symbol)
+
+    transaction = Transaction(
+        last_price=last_price,
+        brokerage_fee=brokerage_fee,
+        current_balance=current_balance,
+        trade_volume=trade_volume,
+        new_balance=left_over,
+        ticker_symbol=ticker_symbol,
+        current_number_shares=None
+    )
     if transaction_cost <= current_balance:
-        return True, return_list
+        return True, transaction
     else:
-        return False, return_list
+        return False, transaction
     # if yes return new balance = current balance - transaction cost
 
 
@@ -309,25 +321,23 @@ def calculate_transaction_cost(trade_volume, last_price, brokerage_fee):
     return transaction_cost
 
 
-def buy_db(return_list):
-    # return_list = (last_price, brokerage_fee, current_balance, trade_volume, left_over, username, ticker_symbol)
+def buy_db(transaction):
     connection = sqlite3.connect('trade_information.db', check_same_thread=False)
     cursor = connection.cursor()
     database = 'trade_information.db'
     username = current_user()
     connection = sqlite3.connect(database, check_same_thread=False)
     cursor = connection.cursor()
-    last_price = return_list[0]
-    trade_volume = return_list[3]
-    left_over = return_list[4]
-    username = return_list[5]
-    ticker_symbol = return_list[6]
+
+    last_price = transaction.last_price
+    trade_volume = transaction.trade_volume
+    left_over = transaction.new_balance
+    username = current_user()
+    ticker_symbol = transaction.ticker_symbol
     now = datetime.datetime.now()
     date = now.strftime("%Y-%m-%d %I:%M %p")
 
-    # update users(current_balance), stocks, holdings.
     # users
-    # updating the balance of the user
     cursor.execute(
         f'''
             UPDATE user
@@ -335,6 +345,7 @@ def buy_db(return_list):
             WHERE username = "{username}";
         '''
     )
+
     # transactions
     cursor.execute(
         f'''INSERT INTO transactions(
@@ -352,7 +363,6 @@ def buy_db(return_list):
         );'''
     )
 
-    # inserting information
     # holdings
     cursor.execute(
         f"""
