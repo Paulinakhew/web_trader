@@ -2,7 +2,6 @@ class Transaction():
     '''Class to store information about a single transaction
 
     Parameters:
-        username (str): the username of the user performing the transaction
         last_price (float): a float representing the last opened price of the stock
         brokerage_fee (float): the fee for performing a transaction
         current_balance (float): the user's current balance
@@ -18,7 +17,6 @@ class Transaction():
         current_balance,
         trade_volume,
         new_balance,
-        username,
         ticker_symbol,
         current_number_shares
     ):
@@ -27,7 +25,6 @@ class Transaction():
         self.current_balance = current_balance
         self.trade_volume = trade_volume
         self.new_balance = new_balance
-        self.username = username
         self.ticker_symbol = ticker_symbol
         self.current_number_shares = current_number_shares
 
