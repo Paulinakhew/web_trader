@@ -329,7 +329,6 @@ def buy_db(transaction):
     connection = sqlite3.connect(database, check_same_thread=False)
     cursor = connection.cursor()
 
-    # TODO: break this up using transaction class
     last_price = transaction.last_price
     trade_volume = transaction.trade_volume
     left_over = transaction.new_balance
@@ -338,8 +337,7 @@ def buy_db(transaction):
     now = datetime.datetime.now()
     date = now.strftime("%Y-%m-%d %I:%M %p")
 
-    # update users(current_balance), stocks, holdings.
-    # updating the balance of the user
+    # users
     cursor.execute(
         f'''
             UPDATE user
@@ -365,7 +363,6 @@ def buy_db(transaction):
         );'''
     )
 
-    # inserting information
     # holdings
     cursor.execute(
         f"""
