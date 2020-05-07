@@ -188,7 +188,6 @@ def sell(username, ticker_symbol, trade_volume):
         current_balance=current_balance,
         trade_volume=trade_volume,
         new_balance=agg_balance,
-        username=username,
         ticker_symbol=ticker_symbol,
         current_number_shares=current_number_shares
     )
@@ -306,7 +305,6 @@ def buy(username, ticker_symbol, trade_volume):
         current_balance=current_balance,
         trade_volume=trade_volume,
         new_balance=left_over,
-        username=username,
         ticker_symbol=ticker_symbol,
         current_number_shares=None
     )
