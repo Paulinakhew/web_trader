@@ -8,6 +8,7 @@ import json
 import sqlite3
 import requests
 import datetime
+import pandas as pd
 
 from Transaction import Transaction
 
@@ -451,6 +452,14 @@ def display_user_holdings():
     cursor.close()
     connection.close()
     return user_holdings
+
+
+def display_user_holdings_graph():
+    username = current_user()
+    connection = sqlite3.connect('trade_information.db', check_same_thread=False)
+    df = pd.read_sql_query(f"SELECT * from holdings WHERE username='{username}';", connection)
+
+    return df
 
 
 def display_user_transactions():
