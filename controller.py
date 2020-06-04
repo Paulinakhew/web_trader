@@ -1,9 +1,15 @@
 #!usr/bin/env python3
 import model as m
 from flask import Flask, render_template, request, redirect
+from flask_restful import Api
+from server import Users
+
 
 app = Flask(__name__)
 username = ''
+
+api = Api(app)
+api.add_resource(Users, '/users')
 
 
 @app.route('/', methods=['GET', 'POST'])

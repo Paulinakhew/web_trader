@@ -11,10 +11,8 @@ import datetime
 
 from Transaction import Transaction
 
-project_folder = os.path.expanduser('.')
-load_dotenv(os.path.join(project_folder, '.env'))
-
-api_key = os.getenv("API_KEY")
+load_dotenv()
+api_key = os.environ.get("API_KEY")
 
 
 def current_user():
