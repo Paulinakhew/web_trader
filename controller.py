@@ -2,7 +2,7 @@
 import model as m
 from flask import Flask, render_template, request, redirect
 from flask_restful import Api
-from server import Users
+from server import Users, Transactions, UserTransactions
 
 
 app = Flask(__name__)
@@ -10,6 +10,8 @@ username = ''
 
 api = Api(app)
 api.add_resource(Users, '/users')
+api.add_resource(Transactions, '/transactions')
+api.add_resource(UserTransactions, '/transactions/<username>')
 
 
 @app.route('/', methods=['GET', 'POST'])
