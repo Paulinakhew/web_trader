@@ -11,8 +11,7 @@ username = ''
 api = Api(
     app=app,
     title='Web Trader API',
-    description='Endpoints used to track users, transactions, and holdings',
-    doc='/docs',
+    description='RESTful API used to track users, transactions, and holdings',
     default='App Details',
     default_label='Contains all API endpoints'
 )
