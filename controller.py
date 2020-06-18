@@ -1,21 +1,29 @@
 #!usr/bin/env python3
 import model as m
 from flask import Flask, render_template, request, redirect
-from flask_restful import Api
+from flask_restx import Api
 from server import Users, Transactions, UserTransactions, UserHoldings
 
 
 app = Flask(__name__)
 username = ''
 
-api = Api(app)
+api = Api(
+    app=app,
+    title='Web Trader API',
+    description='Endpoints used to track users, transactions, and holdings',
+    doc='/docs',
+    default='App Details',
+    default_label='Contains all API endpoints'
+)
+
 api.add_resource(Users, '/users')
 api.add_resource(Transactions, '/transactions')
 api.add_resource(UserTransactions, '/transactions/<username>')
 api.add_resource(UserHoldings, '/holdings/<username>')
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     cannot_login = None
@@ -38,7 +46,7 @@ def menu():
     current_user = m.current_user()
     if request.method == "GET":
         if current_user == 'randomuser':
-            return redirect('/')
+            return redirect('/login')
         else:
             return render_template('menu.html')
     else:
@@ -60,7 +68,7 @@ def create():
             submitted_funds
         )
         if result:
-            return redirect('/')
+            return redirect('/login')
         else:
             cannot_create = True
             return render_template('create.html', cannot_create=cannot_create)
@@ -71,7 +79,7 @@ def dashboard():
     current_user = m.current_user()
     if request.method == "GET":
         if current_user == 'randomuser':
-            return redirect('/')
+            return redirect('/login')
         else:
             m.update_holdings()
             # pnl = m.calculate_p_and_l(username)
@@ -92,7 +100,7 @@ def contact():
     current_user = m.current_user()
     if request.method == "GET":
         if current_user == 'randomuser':
-            return redirect('/')
+            return redirect('/login')
         else:
             return render_template('contact.html')
     else:
@@ -104,7 +112,7 @@ def trade():
     current_user = m.current_user()
     if request.method == "GET":
         if current_user == 'randomuser':
-            return redirect('/')
+            return redirect('/login')
         else:
             return render_template('trade.html')
     elif request.method == "POST":
@@ -165,7 +173,7 @@ def search():
     current_user = m.current_user()
     if request.method == "GET":
         if current_user == 'randomuser':
-            return redirect('/')
+            return redirect('/login')
         else:
             return render_template('search.html')
     elif request.method == "POST":
