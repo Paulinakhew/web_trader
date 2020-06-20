@@ -1,4 +1,4 @@
-from flask_restful import Resource
+from flask_restx import Resource
 from sqlalchemy import create_engine
 from flask_jsonpify import jsonpify
 
