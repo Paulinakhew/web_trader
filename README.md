@@ -1,4 +1,8 @@
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
+[![Build Status](https://travis-ci.com/Paulinakhew/web_trader.svg?branch=master)](https://travis-ci.com/github/Paulinakhew/web_trader)
 [![Coverage Status](https://coveralls.io/repos/github/Paulinakhew/web_trader/badge.svg?branch=coverage)](https://coveralls.io/github/Paulinakhew/web_trader?branch=coverage)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Paulinakhew/web_trader/blob/master/LICENSE)
 
 # Web Trader
 Web Trader is a trading website that consolidates data from Nasdaq, allowing the user to search up the ticker symbol and price of any stock. I employed HTML and CSS to format all the pages and used Python for the back end development. All of the user information, transactions, holdings, and balances are stored in a SQLite3 database. Not only can users search up stocks, they can buy and sell using their own funds. The goal is to end up with a large profit. 
