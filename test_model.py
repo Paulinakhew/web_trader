@@ -16,8 +16,8 @@ def test_mytest():
         m.f()
 
 
-def test_lookup_ticker_symbol_success():
-    assert m.lookup_ticker_symbol('Apple') == 'AAPL'
+# def test_lookup_ticker_symbol_success():
+#     assert m.lookup_ticker_symbol('Apple') == 'AAPL'
 
 
 def test_lookup_ticker_symbol_fail():
