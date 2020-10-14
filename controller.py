@@ -1,9 +1,9 @@
 #!usr/bin/env python3
-import model as m
-from flask import Flask, render_template, request, redirect
+from flask import Flask, redirect, render_template, request
 from flask_restful import Api
-from server import Users, Transactions, UserTransactions, UserHoldings
 
+import model as m
+from server import Transactions, UserHoldings, Users, UserTransactions
 
 app = Flask(__name__)
 username = ''

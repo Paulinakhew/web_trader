@@ -1,6 +1,6 @@
+from flask_jsonpify import jsonpify
 from flask_restful import Resource
 from sqlalchemy import create_engine
-from flask_jsonpify import jsonpify
 
 db_connect = create_engine('sqlite:///trade_information.db')
 
