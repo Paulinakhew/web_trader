@@ -2,6 +2,9 @@ import pytest
 
 import model as m
 from Transaction import Transaction
+import unittest
+import sqlite3
+from unittest.mock import patch, MagicMock, Mock
 
 
 def test_calculate_transaction_cost():
@@ -47,3 +50,10 @@ def test_transaction_class():
     )
 
     assert t1 == t2
+
+
+def test_current_user():
+    with patch('model.sqlite3') as mock_sql:
+        mock_sql.connect().cursor().fetchone.return_value = ['paulina']
+
+        assert m.current_user() == 'paulina'
