@@ -87,3 +87,7 @@ class TestCreate:
     def test_create_fail_negative_value(self):
         with patch('model.sqlite3') as mock_sql:
             assert m.create_('asdf', 'asdf', -124532523525) == False
+
+def test_update_holdings():
+    with patch('model.sqlite3') as mock_sql:
+        m.update_holdings()
