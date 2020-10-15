@@ -10,22 +10,24 @@ from unittest.mock import patch, MagicMock, Mock
 def test_calculate_transaction_cost():
     assert m.calculate_transaction_cost(1, 50, 7) == 57
 
-
 def test_calculate_transaction_revenue():
     assert m.calculate_transaction_revenue(1, 50, 7) == 43
 
 
-def test_mytest():
-    with pytest.raises(SystemExit):
-        m.f()
+class TestLookupTickerSymbol(unittest.TestCase):
+    def test_lookup_ticker_symbol_success(self):
+        '''Make the external API call to test status of API key'''
+        assert m.lookup_ticker_symbol('Apple') == 'AAPL'
+
+    def test_lookup_ticker_symbol_fail(self):
+        with self.assertRaises(Exception) as context:
+            m.lookup_ticker_symbol('asdf')
+        self.assertTrue('There was no company found.' in str(context.exception))
 
 
-def test_lookup_ticker_symbol_success():
-    assert m.lookup_ticker_symbol('Apple') == 'AAPL'
-
-
-def test_lookup_ticker_symbol_fail():
-    assert Exception()
+class TestQuoteLastPrice(unittest.TestCase):
+    def test_quote_last_price_success(self):
+        assert m.quote_last_price('AAPL')
 
 
 def test_transaction_class():
@@ -91,3 +93,23 @@ class TestCreate:
 def test_update_holdings():
     with patch('model.sqlite3') as mock_sql:
         m.update_holdings()
+
+def helper_mock_quote_last_price():
+    ticker_symb = 'aapl'
+    m.quote_last_price(ticker_symb)
+
+# class TestSell():
+        
+    # def test_sell_no_stock(self):
+    #     trans = Transaction(
+    #         last_price=last_price,
+    #         brokerage_fee=6.95,
+    #         current_balance=current_balance,
+    #         trade_volume=trade_volume,
+    #         new_balance=agg_balance,
+    #         ticker_symbol=ticker_symbol,
+    #         current_number_shares=current_number_shares
+    #     )
+    #     result, transaction = m.sell('asdf', 'aapl', 10)
+    #     assert result = True
+    #     assert transaction == trans
