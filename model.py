@@ -194,7 +194,6 @@ def sell(username, ticker_symbol, trade_volume):
         return True, transaction
     else:
         return False, transaction
-    # if yes return new balance = current balance - transaction cost
 
 
 def calculate_transaction_revenue(trade_volume, last_price, brokerage_fee):
