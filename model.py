@@ -79,12 +79,12 @@ def log_in(user_name, password):
             '''
         )
         connection.commit()
+        cursor.close()
+        connection.close()
         return True
-    else:
-        return False
-
     cursor.close()
     connection.close()
+    return False
 
 
 def create_(new_user, new_password, new_fund):

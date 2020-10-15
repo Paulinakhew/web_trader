@@ -58,7 +58,15 @@ def test_current_user():
 
         assert m.current_user() == 'paulina'
 
-def test_log_in():
-    with patch('model.sqlite3') as mock_sql:
-        mock_sql.connect().cursor().fetchone.return_value = ('307e1fb4b8594b49b8eb119a4a38cc5020fd9eb18afa9a38b8c75abb4ac8ae6e','86f712b2c0e419af5f9cfc53f0bd9f0b3cb0c81e4d9299125f2e9e99e504f3a7f2b534894ffbdca10ce0a5507142c91a4d66f859f6df5771ba04e5fa477f28e0')
-        assert m.log_in('asdf', 'asdf') == True
+class TestLogIn:
+    def test_log_in_success(self):
+        with patch('model.sqlite3') as mock_sql:
+            mock_sql.connect().cursor().fetchone.return_value = ('307e1fb4b8594b49b8eb119a4a38cc5020fd9eb18afa9a38b8c75abb4ac8ae6e','86f712b2c0e419af5f9cfc53f0bd9f0b3cb0c81e4d9299125f2e9e99e504f3a7f2b534894ffbdca10ce0a5507142c91a4d66f859f6df5771ba04e5fa477f28e0')
+            assert m.log_in('asdf', 'asdf') == True
+            mock_sql.connect().cursor().fetchone.return_value = ['asdf']
+            assert m.current_user() == 'asdf'
+
+    def test_log_in_failure(self):
+        with patch('model.sqlite3') as mock_sql:
+            mock_sql.connect().cursor().fetchone.return_value = ('asdf','asdf')
+            assert m.log_in('asdf', 'asdf') == False
