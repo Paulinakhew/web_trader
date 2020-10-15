@@ -70,3 +70,20 @@ class TestLogIn:
         with patch('model.sqlite3') as mock_sql:
             mock_sql.connect().cursor().fetchone.return_value = ('asdf','asdf')
             assert m.log_in('asdf', 'asdf') == False
+
+class TestCreate:
+    def test_create_success(self):
+        with patch('model.sqlite3') as mock_sql:
+            assert m.create_('asdf', 'asdf', 124532523525) == True
+
+    def test_create_fail_no_username(self):
+        with patch('model.sqlite3') as mock_sql:
+            assert m.create_('', 'asdf', 124532523525) == False
+
+    def test_create_fail_no_password(self):
+        with patch('model.sqlite3') as mock_sql:
+            assert m.create_('asdf', '', 124532523525) == False
+
+    def test_create_fail_negative_value(self):
+        with patch('model.sqlite3') as mock_sql:
+            assert m.create_('asdf', 'asdf', -124532523525) == False

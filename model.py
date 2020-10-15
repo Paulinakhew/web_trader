@@ -105,7 +105,7 @@ def create_(new_user, new_password, new_fund):
     pwdhash = hashlib.pbkdf2_hmac('sha512', new_password.encode('utf-8'), salt, 100000)
     pwdhash = binascii.hexlify(pwdhash)
 
-    try:
+    if len(new_user) and len(new_password) and new_fund > 0:
         cursor.execute(
             f'''INSERT INTO user(
                 username,
@@ -120,13 +120,12 @@ def create_(new_user, new_password, new_fund):
             );'''
         )
         connection.commit()
+        cursor.close()
+        connection.close()
         return True
-    except:
-        print('There was an error with creating a user.')
-        return False
-
     cursor.close()
     connection.close()
+    return False
 
 
 def update_holdings():
