@@ -1,7 +1,5 @@
 import unittest
-from unittest.mock import MagicMock, Mock, patch
-
-import pytest
+from unittest.mock import patch
 
 import model as m
 from Transaction import Transaction
@@ -70,7 +68,7 @@ class TestLogIn:
                 "86f712b2c0e419af5f9cfc53f0bd9f0b3cb0c81e4d9299125f2e9e99e504f3a7f"
                 "2b534894ffbdca10ce0a5507142c91a4d66f859f6df5771ba04e5fa477f28e0",
             )
-            assert m.log_in("asdf", "asdf") == True
+            assert m.log_in("asdf", "asdf")
             mock_sql.connect().cursor().fetchone.return_value = ["asdf"]
             assert m.current_user() == "asdf"
 
