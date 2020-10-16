@@ -13,6 +13,7 @@ python-dotenv = "==0.14.0"
 Flask-RESTful = "==0.3.8"
 Flask = "==1.1.1"
 Flask-Jsonpify = "==1.5.0"
+flake8 = "*"
 
 [requires]
 python_version = "3.8"
