@@ -1,4 +1,3 @@
-
 # leaderboard()
 #    username = current_user()
 #    symbols=cursor.execute("SELECT ticker_symbol FROM holdings WHERE user='{}'".format(username))
@@ -29,7 +28,7 @@
 '''
 
 
-'''def calculate_p_and_l():
+"""def calculate_p_and_l():
     username = current_user()
     connection = sqlite3.connect('trade_information.db',check_same_thread=False)
     cursor = connection.cursor()
@@ -70,7 +69,7 @@
                 price += shares * purchase_price
     p_and_l += price/total_shares
     return p_and_l
-'''
+"""
 
 
 # def calculate_balance(ticker_symbol, trade_volume):

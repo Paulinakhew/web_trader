@@ -1,5 +1,5 @@
-class Transaction():
-    '''Class to store information about a single transaction
+class Transaction:
+    """Class to store information about a single transaction
 
     Parameters:
         last_price (float): a float representing the last opened price of the stock
@@ -9,7 +9,8 @@ class Transaction():
         new_balance (float): the balance after the transaction is executed
         ticker_symbol (str): a string representing the ticker symbol of the stock
         current_number_shares (float): the current number of shares the user owns
-    '''
+    """
+
     def __init__(
         self,
         last_price,
@@ -18,7 +19,7 @@ class Transaction():
         trade_volume,
         new_balance,
         ticker_symbol,
-        current_number_shares
+        current_number_shares,
     ):
         self.last_price = last_price
         self.brokerage_fee = brokerage_fee

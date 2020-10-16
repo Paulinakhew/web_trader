@@ -2,7 +2,7 @@
 
 import sqlite3
 
-connection = sqlite3.connect('trade_information.db',check_same_thread=False)
+connection = sqlite3.connect("trade_information.db", check_same_thread=False)
 cursor = connection.cursor()
 
 cursor.execute(
@@ -11,7 +11,7 @@ cursor.execute(
     ) VALUES(
         '{}'
     );""".format(
-        'randomuser'
+        "randomuser"
     )
 )
 
