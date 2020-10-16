@@ -123,7 +123,7 @@ def trade():
                 return render_template("trade.html", result=result)
             else:
                 return render_template("trade.html")
-        except:
+        except Exception:
             submitted_symbols = request.form["ticker_symb"].upper()
             submitted_volumes = request.form["number_shares"]
             submitted_volumes = int(submitted_volumes)
@@ -163,7 +163,7 @@ def search():
                 submitted_company_name, ticker_symboll
             )
             return render_template("search.html", resultthree=result)
-        except:
+        except Exception:
             submitted_symbol = request.form["ticker_symbol"]
             submitted_symbol = submitted_symbol.upper()
             price = m.quote_last_price(submitted_symbol)

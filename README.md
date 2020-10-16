@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/Paulinakhew/web_trader/blob/master/LICENSE)
 
 # Web Trader
-Web Trader is a trading website that consolidates data from Nasdaq, allowing the user to search up the ticker symbol and price of any stock. I employed HTML and CSS to format all the pages and used Python for the back end development. All of the user information, transactions, holdings, and balances are stored in a SQLite3 database. Not only can users search up stocks, they can buy and sell using their own funds. The goal is to end up with a large profit. 
+Web Trader is a trading website that consolidates data from Nasdaq, allowing the user to search up the ticker symbol and price of any stock. I employed HTML and CSS to format all the pages and used Python for the back end development. All of the user information, transactions, holdings, and balances are stored in a SQLite3 database. Not only can users search up stocks, they can buy and sell using their own funds. The goal is to end up with a large profit.
 
 ## Setup
 - Clone (or download) the repository:
@@ -85,7 +85,7 @@ I used the `flask_restful` extension to create an `api`. The endpoints are as fo
 I use GitHub actions and Pytest to test the project. You can see the tests [here](test_model.py). I also have the API Key for the Intrinio API set up as a Secret. Secrets are environment variables that are encrypted and only exposed to selected actions. Anyone with collaborator access to this repository can use these secrets in a workflow.
 
 ### Security
-Instead of storing passwords as plaintext, I stored the salt and the hash of the password. When users try to log in, the hashed password is compared to the hash in the database. 
+Instead of storing passwords as plaintext, I stored the salt and the hash of the password. When users try to log in, the hashed password is compared to the hash in the database.
 
 ```Python3
 pwdhash = hashlib.pbkdf2_hmac(

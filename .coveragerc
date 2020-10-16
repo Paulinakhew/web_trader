@@ -1,4 +1,4 @@
 [run]
-include = 
+include =
     model.py
     controller.py
