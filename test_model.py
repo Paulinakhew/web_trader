@@ -104,20 +104,3 @@ def test_update_holdings():
 def helper_mock_quote_last_price():
     ticker_symb = "aapl"
     m.quote_last_price(ticker_symb)
-
-
-# class TestSell():
-
-# def test_sell_no_stock(self):
-#     trans = Transaction(
-#         last_price=last_price,
-#         brokerage_fee=6.95,
-#         current_balance=current_balance,
-#         trade_volume=trade_volume,
-#         new_balance=agg_balance,
-#         ticker_symbol=ticker_symbol,
-#         current_number_shares=current_number_shares
-#     )
-#     result, transaction = m.sell('asdf', 'aapl', 10)
-#     assert result = True
-#     assert transaction == trans
