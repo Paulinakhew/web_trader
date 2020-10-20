@@ -84,7 +84,7 @@ def log_in(user_name, password):
     return False
 
 
-def create_(new_user, new_password, new_fund):
+def create(new_user, new_password, new_fund):
     """Adds a new user into the user database if the username is unique
 
     Parameters:

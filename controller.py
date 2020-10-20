@@ -54,7 +54,7 @@ def create():
         submitted_username = request.form["username"]
         submitted_password = request.form["password"]
         submitted_funds = request.form["funds"]
-        result = m.create_(submitted_username, submitted_password, submitted_funds)
+        result = m.create(submitted_username, submitted_password, submitted_funds)
         if result:
             return redirect("/")
         else:
