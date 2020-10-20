@@ -99,3 +99,27 @@ def test_transaction_class():
     )
 
     assert t1 == t2
+
+
+def test_display_user_transactions():
+    with patch("model.sqlite3") as mock_sql:
+        mock_sql.connect().cursor().fetchall.return_value = [
+            "AAPL",
+            1.0,
+            282.9,
+            "2020-04-25 10:38 PM",
+        ]
+
+        assert m.display_user_transactions() == [
+            "AAPL",
+            1.0,
+            282.9,
+            "2020-04-25 10:38 PM",
+        ]
+
+
+def test_get_users_with_holdings():
+    with patch("model.sqlite3") as mock_sql:
+        mock_sql.connect().cursor().fetchall.return_value = [("paulina"), ("asdf")]
+
+        assert m.get_users_with_holdings() == ["paulina", "asdf"]
