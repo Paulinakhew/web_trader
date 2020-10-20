@@ -488,6 +488,12 @@ def log_out():
             );
         """
     )
+    cursor.execute(
+        """
+            DELETE FROM current_user
+            WHERE pk > 1;
+        """
+    )
     connection.commit()
     cursor.close()
     connection.close()

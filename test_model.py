@@ -116,3 +116,8 @@ def test_display_user_transactions():
             282.9,
             "2020-04-25 10:38 PM",
         ]
+
+
+def test_log_out():
+    with patch("model.sqlite3"):
+        m.log_out()
