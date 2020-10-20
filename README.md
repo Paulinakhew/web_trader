@@ -35,6 +35,11 @@ $ python3 schema.py
 $ python3 seed.py
 ```
 
+- Install pre-commit hook:
+```
+pre-commit install
+```
+
 - Run the app locally:
 ```ShellSession
 $ python3 controller.py
