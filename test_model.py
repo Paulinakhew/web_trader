@@ -67,9 +67,7 @@ class TestLookupTickerSymbol(unittest.TestCase):
         assert m.lookup_ticker_symbol("Apple") == "AAPL"
 
     def test_lookup_ticker_symbol_fail(self):
-        with self.assertRaises(Exception) as context:
-            m.lookup_ticker_symbol("asdf")
-        self.assertTrue("There was no company found." in str(context.exception))
+        assert not m.lookup_ticker_symbol("asdf")
 
 
 class TestQuoteLastPrice(unittest.TestCase):

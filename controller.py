@@ -159,18 +159,20 @@ def search():
             submitted_company_name = request.form["company_name"]
             submitted_company_name = submitted_company_name.capitalize()
             ticker_symboll = m.lookup_ticker_symbol(submitted_company_name)
-            result = "The ticker symbol for {} is {}.".format(
-                submitted_company_name, ticker_symboll
-            )
-            return render_template("search.html", resultthree=result)
+            if ticker_symboll:
+                result = "The ticker symbol for {} is {}.".format(
+                    submitted_company_name, ticker_symboll
+                )
+                return render_template("search.html", resultthree=result)
+            else:
+                return render_template("search.html", company_dne=True)
+
         except Exception:
             submitted_symbol = request.form["ticker_symbol"]
             submitted_symbol = submitted_symbol.upper()
             price = m.quote_last_price(submitted_symbol)
             results = "The last price of {} is ${}.".format(submitted_symbol, price)
             return render_template("search.html", resultfour=results)
-        else:
-            return render_template("search.html")
 
 
 if __name__ == "__main__":

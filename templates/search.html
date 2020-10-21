@@ -46,6 +46,11 @@
                     <div class="my-3 py-3">
                         <h2 class="display-5">Symbol Lookup</h2>
                         <p class="lead">
+                            {% if company_dne %}
+                                <div class="alert alert-danger" role="alert">
+                                    A company by that name does not exist.
+                                </div>
+                            {% endif %}
                             <form action="/search" method="post">
                                 <input name="company_name" placeholder="company">
                                 <input type="submit">

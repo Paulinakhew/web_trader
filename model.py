@@ -102,7 +102,7 @@ def create(new_user, new_password, new_fund):
     pwdhash = hashlib.pbkdf2_hmac("sha512", new_password.encode("utf-8"), salt, 100000)
     pwdhash = binascii.hexlify(pwdhash)
 
-    if len(new_user) and len(new_password) and new_fund > 0:
+    if len(new_user) and len(new_password) and float(new_fund) > 0:
         cursor.execute(
             f"""INSERT INTO user(
                 username,
@@ -426,7 +426,7 @@ def lookup_ticker_symbol(company_name):
         ]
         return ticker_symbol
     except IndexError:
-        raise Exception("There was no company found.")
+        return False
 
 
 def quote_last_price(ticker_symbol):
